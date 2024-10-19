@@ -1,0 +1,17 @@
+.rocketContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.rocket {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transform: rotate();
+  transition: transform 0.1s ease-out;
+}
