@@ -1,63 +1,66 @@
-'use client'
-import React from 'react';
-import { PolaroidSlider } from './components/PolaroidSlider';
+"use client";
+import React from "react";
+import { PolaroidSlider } from "./components/PolaroidSlider";
 import styles from "./page.module.css";
-import StarField from './components/LightSpeed';
-import { Title } from './components/Title';
-
+import { Title } from "./components/Title";
+import Speedometer from "./components/Speedometer";
+import StarField from "./components/LightSpeed";
 
 export default function Home() {
-
-
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-
-        <div className='container-full'>
-            <StarField />
+        <div className="container-full">
+          <StarField />
         </div>
-        
         <div className={`container ${styles.sectionAboutMe}`}>
-            <Title>About me</Title>
-            <div className={styles.box}>
-              <div className={styles.text}>
-                <p>a passionate frontend developer specializing in web performance.</p>
-                <p>
-                  I&apos;ve worked on optimizing large-scale websites like Samsung Argentina, and I currently focus on improving the performance of Samsung Brazil&apos;s website, ensuring a faster and more efficient user experience. 
-                </p>
-                <p>
-                  I love creating innovative solutions for businesses and always seek new challenges.
-                </p>
-              </div>
-              <div className={styles.image}>
-                d
-              </div>
+          <Title>About me</Title>
+          <div className={styles.box}>
+            <div className={styles.text}>
+              <p>
+                a passionate frontend developer specializing in web performance.
+              </p>
+              <p>
+                I&apos;ve worked on optimizing large-scale websites like Samsung
+                Argentina, and I currently focus on improving the performance of
+                Samsung Brazil&apos;s website, ensuring a faster and more
+                efficient user experience.
+              </p>
+              <p>
+                I love creating innovative solutions for businesses and always
+                seek new challenges.
+              </p>
             </div>
+            <div className={styles.image}>d</div>
+          </div>
         </div>
-        
         <div className={`container ${styles.sectionKnowledges}`}>
-            <Title>Knowledges</Title>
-            <div className={`container`}>
-              <div className={styles.box}></div>
-            </div>
+          <Title>Knowledges</Title>
+          <div className={`container`}>
+            <div className={styles.box}></div>
+          </div>
         </div>
-
         <div className={`container-full ${styles.sectionServices}`}>
-            <div className='container'>
-              <Title>Services</Title>
+          <div className="container">
+            <Title>Services</Title>
+          </div>
+          <div className={`container`}>
+            <div className={styles.box}>
+              <Speedometer>
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+              </Speedometer>
             </div>
+          </div>
         </div>
-    
+        ,
         <div className={`container-full ${styles.sectionProjects}`}>
-            <Title>Projects</Title>
-            <div className={`container`}>
-                <PolaroidSlider />
-            </div>
+          <Title>Projects</Title>
+          <div className={`container`}>
+            <PolaroidSlider />
+          </div>
         </div>
-        
-   
-
-
         {/* <div className={styles.footer}>
           <a href="https://www.linkedin.com/in/fernando-aquistapace-33a414165" target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

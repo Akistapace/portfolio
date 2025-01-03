@@ -8,8 +8,6 @@ import localFont from "next/font/local";
 import 'swiper/swiper-bundle.css';
 import "./globals.css";
 import { Header } from "./components/Header";
-import MouseShip from "./components/MouseShip";
-// import Head from "next/head";
 
 const fontAbril = localFont({
   src: "./fonts/AbrilFatface-Regular.ttf",
@@ -33,7 +31,6 @@ export default function RootLayout({
     <html lang="en" className={fontAbril.variable}>
       <body >
         <Header />
-        <MouseShip />
         {children}
       </body>
     </html>

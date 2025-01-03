@@ -19,12 +19,12 @@
             "rotation": -20
         },
         {
-            "title": "Portella Cabos",
-            "url": "https://www.portellacabos.com.br/",
-            "description": "My App description",
+            "title": "VTEX-Lazyloading",
+            "url": "https://github.com/Akistapace/vtex-lazyLoading",
+            "description": "Lazy Load plugin for components and images in a simple and controlled way to use in VTEX legacy store's",
             "images": [""],
-            "thumb": "https://via.placeholder.com/300x300",
-            "main-color": "#000000",
+            "thumb": "/images/npm.png",
+            "main-color": "#cb3737",
             "rotation": 5
         },
         {
