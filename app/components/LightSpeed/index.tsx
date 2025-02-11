@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useRef } from "react";
 import p5 from "p5";
+import { useEffect, useRef } from "react";
 import style from "./style.module.css";
-import { Title } from "../Title";
+// import { Title } from "../Title";
 
 const numStars = 200;
 
@@ -97,11 +97,10 @@ const StarField: React.FC = () => {
     <div className={style.container}>
       <div ref={canvasRef}></div>
       <div className={style.box}>
-        <Title effect={false}>
-          Fernando
-          <br />
-          Aquistapace
-        </Title>
+        <h1 className={style.title}>
+          Fernando Aquistapace
+        </h1>
+        <p className={style.subtitle}>Frontend Developer | Performance Developer</p>
       </div>
     </div>
   );

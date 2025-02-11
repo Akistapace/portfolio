@@ -6,15 +6,23 @@ import localFont from "next/font/local";
 // import '@fontsource/roboto/500.css';
 // import '@fontsource/roboto/700.css';
 import 'swiper/swiper-bundle.css';
-import "./globals.css";
 import { Header } from "./components/Header";
+import "./globals.css";
 
-const fontAbril = localFont({
-  src: "./fonts/AbrilFatface-Regular.ttf",
+// const fontAbril = localFont({
+//   src: "./fonts/AbrilFatface-Regular.ttf",
+//   variable: "--font-abril",
+//   weight: "100 700 900",
+//   display: "swap"
+// });
+
+const fontMontSerratUnderline = localFont({
+  src: "./fonts/MontserratUnderline-Regular.ttf",
   variable: "--font-abril",
-  weight: "100 900",
+  weight: "100 700 900",
   display: "swap"
 });
+
 
 export const metadata: Metadata = {
   title: "Fernando Aquistapace",
@@ -28,7 +36,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" className={fontAbril.variable}>
+    <html lang="en" className={fontMontSerratUnderline.variable}>
       <body >
         <Header />
         {children}
