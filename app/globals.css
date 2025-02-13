@@ -3,7 +3,7 @@
   padding: 0;
   margin: 0;
   font-family: var(--font-abril), serif;
-
+  scroll-behavior: smooth;
 }
 
 html,
@@ -77,4 +77,22 @@ a {
 
 .pv-4 {
   padding: 40px 0;
+}
+
+[data-animate="fade-up"] {
+  animation: fade-in linear;
+  animation-timeline: view(0 100px);
+  opacity: 0;
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
 }

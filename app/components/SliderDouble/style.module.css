@@ -1,7 +1,22 @@
 .slider {
     max-height: 200px;
+    margin-bottom: 30px;
 }
 
 .slide {
     max-height: 200px;
+    background-color: #211d1d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.logos {
+    filter: grayscale(1);
+    transition: filter 0.3s ease;
+}
+
+.slide:hover .logos {
+    filter: grayscale(0);
 }

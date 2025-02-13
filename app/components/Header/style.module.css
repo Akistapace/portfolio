@@ -8,25 +8,28 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px;
     color: #000;
     z-index: 100;
 }
+
 .brand {
-    font-family: 'Roboto',Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 18px;
 }
+
 .list {
     list-style: none;
     display: flex;
 }
+
 .item {
     margin: 0 10px;
     position: relative;
     cursor: pointer;
     font-weight: 600;
 }
+
 .item:before {
     content: '';
     width: 0;
@@ -37,6 +40,7 @@
     bottom: -5px;
     left: 0;
 }
+
 .item:hover:before {
     width: 100%;
 }

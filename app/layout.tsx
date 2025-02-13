@@ -1,20 +1,10 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-
-// import '@fontsource/roboto/300.css';
-// import '@fontsource/roboto/400.css';
-// import '@fontsource/roboto/500.css';
-// import '@fontsource/roboto/700.css';
+import AnimatedCursor from "react-animated-cursor";
 import 'swiper/swiper-bundle.css';
 import { Header } from "./components/Header";
 import "./globals.css";
-
-// const fontAbril = localFont({
-//   src: "./fonts/AbrilFatface-Regular.ttf",
-//   variable: "--font-abril",
-//   weight: "100 700 900",
-//   display: "swap"
-// });
 
 const fontMontSerratUnderline = localFont({
   src: "./fonts/MontserratUnderline-Regular.ttf",
@@ -26,7 +16,7 @@ const fontMontSerratUnderline = localFont({
 
 export const metadata: Metadata = {
   title: "Fernando Aquistapace",
-  description: "Web Performance Specialist",
+  description: "Frontend | Web Performance Specialist",
 };
 
 export default function RootLayout({
@@ -37,6 +27,28 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={fontMontSerratUnderline.variable}>
+      {/* <Head>
+        <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.20/dist/lenis.css" />
+      </Head> */}
+      <AnimatedCursor
+        clickables={['a', 'input', 'texarea', 'button', 'select']}
+        color="#fff"
+        innerSize={8}
+        outerSize={35}
+        innerScale={1}
+        outerScale={1.7}
+        outerAlpha={0}
+        outerStyle={{
+          width: '60px',
+          height: '60px',
+          background: '#fff',
+          mixBlendMode: 'exclusion'
+        }}
+        innerStyle={{
+          background: '#fff',
+          mixBlendMode: 'exclusion'
+        }}
+      />
       <body >
         <Header />
         {children}

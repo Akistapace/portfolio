@@ -12,6 +12,7 @@ const numStars = 30;
 export const Section = ({ children, padding }: Props) => {
     const canvasRef = useRef<HTMLDivElement | null>(null);
 
+
     useEffect(() => {
         let p5Instance: p5 | null = null;
 
@@ -81,9 +82,8 @@ export const Section = ({ children, padding }: Props) => {
 
     return (
         <div className={style.hero}>
-            <div ref={canvasRef}></div>
+            <div ref={canvasRef} className="luxy-el"></div>
             <div className={style.box} style={{ padding }}>
-
                 {children}
             </div>
         </div>

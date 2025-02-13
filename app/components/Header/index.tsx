@@ -1,10 +1,9 @@
 'use client'
-import React from "react";
-import style from './style.module.css'
+import style from './style.module.css';
 
 export const Header = () => {
     return (
-        <header className={`container ${style.header}`}>
+        <header className={`container-full ${style.header}`}>
             <h1 className={style.brand}>Fernando Aquistpace</h1>
             <ul className={style.list}>
                 <li className={style.item}>Menu</li>
