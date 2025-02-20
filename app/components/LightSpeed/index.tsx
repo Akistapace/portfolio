@@ -1,22 +1,38 @@
 "use client";
 import p5 from "p5";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from "./style.module.css";
-// import { Title } from "../Title";
 
 const numStars = 200;
 
 const StarField: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const p5InstanceRef = useRef<p5 | null>(null);
 
   useEffect(() => {
-    let p5Instance: p5 | null = null;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Considera visível se pelo menos 10% do componente estiver na tela
+    );
+
+    if (canvasRef.current) {
+      observer.observe(canvasRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
 
     const sketch = (p: p5) => {
       let stars: Star[] = [];
 
       p.setup = () => {
-        p.createCanvas(p.windowWidth, p.windowHeight); // Canvas dimension matches window size
+        p.createCanvas(p.windowWidth, p.windowHeight);
         p.stroke(0);
         p.strokeWeight(2);
 
@@ -26,8 +42,10 @@ const StarField: React.FC = () => {
       };
 
       p.draw = () => {
+        if (!isVisible) return; // Pausa a animação se não estiver visível
+
         p.background(255, 50);
-        const acc = p.map(p.mouseX, 0, p.width, 0.02, 0.2);
+        const acc = p.map(p.mouseX, 0, p.width, 0.2, 0.2);
 
         stars = stars.filter((star) => {
           star.draw();
@@ -41,7 +59,7 @@ const StarField: React.FC = () => {
       };
 
       p.windowResized = () => {
-        p.resizeCanvas(p.windowWidth, p.windowHeight); // Resize canvas dynamically
+        p.resizeCanvas(p.windowWidth, p.windowHeight);
       };
 
       class Star {
@@ -84,22 +102,19 @@ const StarField: React.FC = () => {
       }
     };
 
-    p5Instance = new p5(sketch, canvasRef.current as HTMLElement);
+    p5InstanceRef.current = new p5(sketch, canvasRef.current as HTMLElement);
 
     return () => {
-      if (p5Instance) {
-        p5Instance.remove();
-      }
+      p5InstanceRef.current?.remove();
+      p5InstanceRef.current = null;
     };
-  }, []);
+  }, [isVisible]); // Atualiza a animação conforme a visibilidade muda
 
   return (
     <div className={style.container}>
       <div ref={canvasRef}></div>
       <div className={style.box}>
-        <h1 className={style.title}>
-          Fernando Aquistapace
-        </h1>
+        <h1 className={style.title}>Fernando Aquistapace</h1>
         <p className={style.subtitle}>Frontend Developer | Performance Developer</p>
       </div>
     </div>

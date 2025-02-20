@@ -1,20 +1,36 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import p5 from "p5";
-import { ReactNode, useEffect, useRef } from "react";
-import style from "./style.module.css";
-
+import { ReactNode, useEffect, useRef, useState } from "react";
+import styles from './style.module.css';
 interface Props {
     children: ReactNode;
-    padding?: string;
+    style?: any
 }
 
 const numStars = 30;
 
-export const Section = ({ children, padding }: Props) => {
+export const Section = ({ children, style }: Props) => {
     const canvasRef = useRef<HTMLDivElement | null>(null);
-
+    const [isVisible, setIsVisible] = useState(false);
+    const p5InstanceRef = useRef<p5 | null>(null);
 
     useEffect(() => {
-        let p5Instance: p5 | null = null;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsVisible(entry.isIntersecting);
+            },
+            { threshold: 0.1 } // Considera visível se pelo menos 10% da Section estiver na tela
+        );
+
+        if (canvasRef.current) {
+            observer.observe(canvasRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!canvasRef.current) return;
 
         const sketch = (p: p5) => {
             const stars: Star[] = [];
@@ -30,6 +46,7 @@ export const Section = ({ children, padding }: Props) => {
             };
 
             p.draw = () => {
+                if (!isVisible) return; // Para a animação se a seção não estiver visível
                 p.background(0);
                 stars.forEach((star) => {
                     star.update();
@@ -70,20 +87,18 @@ export const Section = ({ children, padding }: Props) => {
             }
         };
 
-        p5Instance = new p5(sketch, canvasRef.current as HTMLElement);
+        p5InstanceRef.current = new p5(sketch, canvasRef.current as HTMLElement);
 
         return () => {
-            if (p5Instance) {
-                p5Instance.remove();
-            }
+            p5InstanceRef.current?.remove();
+            p5InstanceRef.current = null;
         };
-    }, []);
-
+    }, [isVisible]); // Atualiza a animação conforme a visibilidade muda
 
     return (
-        <div className={style.hero}>
-            <div ref={canvasRef} className="luxy-el"></div>
-            <div className={style.box} style={{ padding }}>
+        <div className={styles.hero}>
+            <div ref={canvasRef}></div>
+            <div className={styles.box} style={{ ...(style || {}) }}>
                 {children}
             </div>
         </div>

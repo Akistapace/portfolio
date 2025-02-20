@@ -1,6 +1,14 @@
 .title {
-    font-size: 3rem;
-    text-transform: uppercase;
-    text-align: center;
-    width: 100%;
+	font-size: 3rem;
+	text-transform: uppercase;
+	text-align: center;
+	width: 100%;
+	font-family: var(--font-abril), serif;
+	margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+	.title {
+		font-size: 2rem;
+	}
 }
