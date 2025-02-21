@@ -1,9 +1,8 @@
 "use client";
 import p5 from "p5";
 import { useEffect, useRef, useState } from "react";
-import { isMobile } from 'react-device-detect';
+import { isMobile } from "react-device-detect";
 import style from "./style.module.css";
-
 
 const StarField: React.FC = () => {
 	const canvasRef = useRef<HTMLDivElement | null>(null);
@@ -16,7 +15,7 @@ const StarField: React.FC = () => {
 				([entry]) => {
 					setIsVisible(entry.isIntersecting);
 				},
-				{ threshold: 0.1 } // Considera visível se pelo menos 10% do componente estiver na tela
+				{ threshold: 0.1 }
 			);
 
 			if (canvasRef.current) {
@@ -29,16 +28,17 @@ const StarField: React.FC = () => {
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
-			const numStars = !isMobile ? 200 : 50;
+			const numStars = isMobile ? (window.innerWidth < 500 ? 30 : 50) : 200;
+			const frameRate = isMobile ? 30 : 60;
 
-
-			if (!canvasRef.current) return;
+			if (!canvasRef.current || !isVisible) return;
 
 			const sketch = (p: p5) => {
 				let stars: Star[] = [];
 
 				p.setup = () => {
 					p.createCanvas(p.windowWidth, p.windowHeight);
+					p.frameRate(frameRate);
 					p.stroke(0);
 					p.strokeWeight(2);
 
@@ -48,19 +48,12 @@ const StarField: React.FC = () => {
 				};
 
 				p.draw = () => {
-					if (!isVisible) return; // Pausa a animação se não estiver visível
-
 					p.background(255, 50);
 					const acc = p.map(p.mouseX, 0, p.width, 0.2, 0.2);
 
-					stars = stars.filter((star) => {
-						star.draw();
+					for (let star of stars) {
 						star.update(acc);
-						return star.isActive();
-					});
-
-					while (stars.length < numStars) {
-						stars.push(new Star(p.random(p.width), p.random(p.height), p));
+						star.draw();
 					}
 				};
 
@@ -81,10 +74,6 @@ const StarField: React.FC = () => {
 						this.ang = p.atan2(y - p.height / 2, x - p.width / 2);
 					}
 
-					isActive() {
-						return this.onScreen(this.prevPos.x, this.prevPos.y, p);
-					}
-
 					update(acc: number) {
 						this.vel.x += p.cos(this.ang) * acc;
 						this.vel.y += p.sin(this.ang) * acc;
@@ -94,6 +83,11 @@ const StarField: React.FC = () => {
 
 						this.pos.x += this.vel.x;
 						this.pos.y += this.vel.y;
+
+						// Reposiciona a estrela se sair da tela
+						if (!this.onScreen(this.pos.x, this.pos.y, p)) {
+							this.resetPosition();
+						}
 					}
 
 					draw() {
@@ -105,6 +99,13 @@ const StarField: React.FC = () => {
 					private onScreen(x: number, y: number, p: p5) {
 						return x >= 0 && x <= p.width && y >= 0 && y <= p.height;
 					}
+
+					private resetPosition() {
+						this.pos.x = p.random(p.width);
+						this.pos.y = p.random(p.height);
+						this.prevPos.set(this.pos);
+						this.vel.set(0, 0);
+					}
 				}
 			};
 
@@ -115,8 +116,7 @@ const StarField: React.FC = () => {
 				p5InstanceRef.current = null;
 			};
 		}
-
-	}, [isVisible]); // Atualiza a animação conforme a visibilidade muda
+	}, [isVisible]);
 
 	return (
 		<div className={style.container}>
