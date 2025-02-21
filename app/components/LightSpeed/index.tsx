@@ -28,10 +28,10 @@ const StarField: React.FC = () => {
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
-			const numStars = isMobile ? (window.innerWidth < 500 ? 30 : 50) : 200;
-			const frameRate = isMobile ? 30 : 60;
+			const numStars = isMobile ? 50 : 200; // Reduz o número de estrelas no mobile
+			const frameRate = isMobile ? 30 : 60; // Reduz FPS para 30 no mobile
 
-			if (!canvasRef.current || !isVisible) return;
+			if (!canvasRef.current) return;
 
 			const sketch = (p: p5) => {
 				let stars: Star[] = [];
@@ -48,12 +48,19 @@ const StarField: React.FC = () => {
 				};
 
 				p.draw = () => {
+					if (!isVisible) return; // Pausa animação quando não visível
+
 					p.background(255, 50);
 					const acc = p.map(p.mouseX, 0, p.width, 0.2, 0.2);
 
-					for (let star of stars) {
-						star.update(acc);
+					stars = stars.filter((star) => {
 						star.draw();
+						star.update(acc);
+						return star.isActive();
+					});
+
+					while (stars.length < numStars) {
+						stars.push(new Star(p.random(p.width), p.random(p.height), p));
 					}
 				};
 
@@ -74,6 +81,10 @@ const StarField: React.FC = () => {
 						this.ang = p.atan2(y - p.height / 2, x - p.width / 2);
 					}
 
+					isActive() {
+						return this.onScreen(this.prevPos.x, this.prevPos.y, p);
+					}
+
 					update(acc: number) {
 						this.vel.x += p.cos(this.ang) * acc;
 						this.vel.y += p.sin(this.ang) * acc;
@@ -83,11 +94,6 @@ const StarField: React.FC = () => {
 
 						this.pos.x += this.vel.x;
 						this.pos.y += this.vel.y;
-
-						// Reposiciona a estrela se sair da tela
-						if (!this.onScreen(this.pos.x, this.pos.y, p)) {
-							this.resetPosition();
-						}
 					}
 
 					draw() {
@@ -99,17 +105,15 @@ const StarField: React.FC = () => {
 					private onScreen(x: number, y: number, p: p5) {
 						return x >= 0 && x <= p.width && y >= 0 && y <= p.height;
 					}
-
-					private resetPosition() {
-						this.pos.x = p.random(p.width);
-						this.pos.y = p.random(p.height);
-						this.prevPos.set(this.pos);
-						this.vel.set(0, 0);
-					}
 				}
 			};
 
-			p5InstanceRef.current = new p5(sketch, canvasRef.current as HTMLElement);
+			if (isVisible) {
+				p5InstanceRef.current = new p5(sketch, canvasRef.current as HTMLElement);
+			} else {
+				p5InstanceRef.current?.remove();
+				p5InstanceRef.current = null;
+			}
 
 			return () => {
 				p5InstanceRef.current?.remove();
