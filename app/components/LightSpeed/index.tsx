@@ -1,9 +1,9 @@
 "use client";
 import p5 from "p5";
 import { useEffect, useRef, useState } from "react";
+import { isMobile } from 'react-device-detect';
 import style from "./style.module.css";
 
-const numStars = 200;
 
 const StarField: React.FC = () => {
 	const canvasRef = useRef<HTMLDivElement | null>(null);
@@ -29,6 +29,9 @@ const StarField: React.FC = () => {
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
+			const numStars = isMobile ? 200 : 50;
+
+
 			if (!canvasRef.current) return;
 
 			const sketch = (p: p5) => {
