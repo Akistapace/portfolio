@@ -29,7 +29,7 @@ const StarField: React.FC = () => {
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
-			const numStars = isMobile ? 200 : 50;
+			const numStars = !isMobile ? 200 : 50;
 
 
 			if (!canvasRef.current) return;
