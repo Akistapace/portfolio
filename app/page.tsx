@@ -1,9 +1,12 @@
-import HalfGlobe from "./components/Globe/HalfGlobe";
-import StarField from "./components/LightSpeed";
-import { Section } from "./components/Section/Section";
-import { Slider } from "./components/SliderDouble";
-import { Title } from "./components/Title";
+"use client";
+
+import dynamic from "next/dynamic";
 import styles from "./page.module.css";
+const HalfGlobe = dynamic(() => import("./components/Globe/HalfGlobe"), { ssr: false });
+const StarField = dynamic(() => import("./components/LightSpeed"), { ssr: false });
+const Section = dynamic(() => import("./components/Section/Section"), { ssr: false });
+const Slider = dynamic(() => import("./components/SliderDouble"), { ssr: false });
+const Title = dynamic(() => import("./components/Title"), { ssr: false });
 
 const Home = () => {
 

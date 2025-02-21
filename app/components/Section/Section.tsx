@@ -11,7 +11,7 @@ interface Props {
 
 const numStars = 30;
 
-export const Section = ({ children, style }: Props) => {
+const Section = ({ children, style }: Props) => {
 	const canvasRef = useRef<HTMLDivElement | null>(null);
 	const [isVisible, setIsVisible] = useState(false);
 	const p5InstanceRef = useRef<p5 | null>(null);
@@ -113,3 +113,5 @@ export const Section = ({ children, style }: Props) => {
 		</div>
 	);
 };
+
+export default Section;

@@ -7,27 +7,27 @@ import { Header } from "./components/Header";
 import "./globals.css";
 
 const fontMontSerratUnderline = localFont({
-  src: "./fonts/MontserratUnderline-Regular.ttf",
-  variable: "--font-abril",
-  weight: "100 700 900",
-  display: "swap"
+	src: "./fonts/MontserratUnderline-Regular.ttf",
+	variable: "--font-abril",
+	weight: "100 700 900",
+	display: "swap"
 });
 
 
 export const metadata: Metadata = {
-  title: "Fernando Aquistapace",
-  description: "Frontend | Web Performance Specialist",
+	title: "Fernando Aquistapace",
+	description: "Frontend | Web Performance Specialist",
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
 
-  return (
-    <html lang="en" className={fontMontSerratUnderline.variable}>
-      {/* <head>
+	return (
+		<html lang="en" className={fontMontSerratUnderline.variable}>
+			{/* <head>
         <style>{`
           .loader {
             position: relative;
@@ -85,29 +85,29 @@ export default function RootLayout({
         `}</style>
       </head> */}
 
-      <AnimatedCursor
-        clickables={['a', 'input', 'texarea', 'button', 'select']}
-        color="#fff"
-        innerSize={8}
-        outerSize={35}
-        innerScale={1}
-        outerScale={1.7}
-        outerAlpha={0}
-        outerStyle={{
-          width: '60px',
-          height: '60px',
-          background: '#fff',
-          mixBlendMode: 'exclusion'
-        }}
-        innerStyle={{
-          background: '#fff',
-          mixBlendMode: 'exclusion'
-        }}
-      />
-      <body >
-        <Header />
-        {children}
-      </body>
-    </html>
-  );
+			<AnimatedCursor
+				clickables={['a', 'input', 'texarea', 'button', 'select']}
+				color="#fff"
+				innerSize={8}
+				outerSize={35}
+				innerScale={1}
+				outerScale={1.7}
+				outerAlpha={0}
+				outerStyle={{
+					width: '60px',
+					height: '60px',
+					background: '#fff',
+					mixBlendMode: 'exclusion'
+				}}
+				innerStyle={{
+					background: '#fff',
+					mixBlendMode: 'exclusion'
+				}}
+			/>
+			<body >
+				<Header />
+				{children}
+			</body>
+		</html>
+	);
 }

@@ -17,7 +17,7 @@ const techLogos = [
 	"markdown", "zod"
 ];
 
-export const Slider = ({ reverse }: { reverse?: boolean }) => {
+const Slider = ({ reverse }: { reverse?: boolean }) => {
 	const swiperRef = useRef<unknown>(null);
 	const [images, setImages] = useState<{ [key: string]: string }>({});
 
@@ -88,3 +88,5 @@ export const Slider = ({ reverse }: { reverse?: boolean }) => {
 		</Swiper >
 	);
 };
+
+export default Slider;
