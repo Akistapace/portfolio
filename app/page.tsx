@@ -1,5 +1,3 @@
-"use client";
-
 import HalfGlobe from "./components/Globe/HalfGlobe";
 import StarField from "./components/LightSpeed";
 import { Section } from "./components/Section/Section";
@@ -8,10 +6,6 @@ import { Title } from "./components/Title";
 import styles from "./page.module.css";
 
 const Home = () => {
-
-	// useEffect(() => {
-	//   luxy.init()
-	// }, [])
 
 	return (
 		<div className={styles.page} >
