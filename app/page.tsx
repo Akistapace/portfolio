@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { ListItems } from "./components/ListItems";
 import styles from "./page.module.css";
 const HalfGlobe = dynamic(() => import("./components/Globe/HalfGlobe"), { ssr: false });
 const StarField = dynamic(() => import("./components/LightSpeed"), { ssr: false });
@@ -33,8 +34,12 @@ const Home = () => {
 					<Section style={{ padding: "20px" }}>
 						<Title>Projetos</Title>
 						<p>Lorem Ipsum dolor sit ammet</p>
-						<div className="container">
+						<div className="container flex">
+							<div className={styles.box}>
+								<ListItems />
+							</div>
 
+							<div className={styles.box}>Side</div>
 						</div>
 					</Section>
 				</div>
