@@ -1,0 +1,103 @@
+.card {
+	width: 100%;
+}
+
+.card .title,
+.card .subtitle,
+.card .description {
+	color: #fff;
+}
+
+.card .description {
+	line-height: 32px;
+}
+
+.card .title {
+	margin-bottom: 24px;
+	font-size: 36px;
+	font-weight: 700;
+}
+.card .subtitle {
+	font-weight: 700;
+	margin-top: 40px;
+	margin-bottom: 25px;
+	font-size: 16px;
+}
+
+.image {
+	width: 500px;
+	height: 500px;
+	border-radius: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.image img {
+	width: 100%;
+	max-width: 400px;
+}
+
+.floating {
+	animation: floatLR 3s ease-in-out infinite alternate, floatUpDown 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes floatLR {
+	0% {
+		transform: translateX(-10px);
+	}
+	100% {
+		transform: translateX(10px);
+	}
+}
+
+@keyframes floatUpDown {
+	0% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(5px);
+	}
+}
+
+.image.medidordeanelonline img,
+.image.vtexlazyloading img {
+	max-width: 250px;
+}
+
+.icon {
+	max-width: 30px;
+	transition: transform 0.3s linear;
+}
+
+.icon:hover {
+	transform: scale(1.1);
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	color: #000000;
+	background-color: #fff;
+	padding: 5px 20px;
+	border-radius: 10px;
+	font-weight: 600;
+	font-size: 18px;
+	transition: all 0.3s linear;
+	margin-top: 40px;
+}
+
+.button:hover {
+	background-color: #000000;
+	color: #fff;
+	border: 1px solid #fff;
+}
+.arrow {
+	width: 30px;
+}
+.swiper {
+	width: 100%;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}

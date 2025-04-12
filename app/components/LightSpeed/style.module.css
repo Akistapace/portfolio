@@ -1,68 +1,78 @@
 @keyframes fogo {
-    0% {
-        background-position: 0% 50%;
-    }
+	0% {
+		background-position: 0% 50%;
+	}
 
-    50% {
-        background-position: 100% 50%;
-    }
+	50% {
+		background-position: 100% 50%;
+	}
 
-    100% {
-        background-position: 0% 50%;
-    }
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 .container {
-    width: 100%;
-    height: 100vh;
-    position: relative;
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	background-color: #fff;
 }
 
+.container.hero {
+	min-height: 100vh;
+	background-color: #fff;
+}
+
+
 .container canvas {
-    width: 100%;
-    height: 100vh;
+	width: 100%;
+	height: 100vh;
+	will-change: transform;
+	transform: translateZ(0);
 }
 
 .container .box {
-    background: linear-gradient(to top, #000000, transparent 10%);
-    /* background-size: 300% 300%; */
-    z-index: 10;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    top: 0;
-    left: 0;
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    animation: fogo 2s infinite ease-in-out;
+	background-color: #fff;
+	background: linear-gradient(to top, #000000, transparent 10%);
+	/* background-size: 300% 300%; */
+	z-index: 10;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	top: 0;
+	left: 0;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+	animation: fogo 2s infinite ease-in-out;
 
 }
 
 .container .title {
-    font-size: 4em;
-    font-family: var(--font-abril);
-    text-align: center;
-    transform: translateY(-30px);
-    position: relative;
-    line-height: 1em;
+	font-size: 4em;
+	font-family: var(--font-abril);
+	text-align: center;
+	transform: translateY(-30px);
+	position: relative;
+	line-height: 1em;
 }
 
 .container .subtitle {
-    font-size: 1.5em;
-    display: block;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: center;
+	font-size: 1.5em;
+	display: block;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	text-align: center;
 }
 
 @media (max-width: 768px) {
-    .container .title {
-        font-size: 1.6rem;
-    }
+	.container .title {
+		font-size: 1.6rem;
+	}
 
-    .container .subtitle {
-        font-size: 0.9rem;
-    }
+	.container .subtitle {
+		font-size: 0.9rem;
+	}
 }

@@ -13,9 +13,23 @@
 	padding: 20px;
 }
 
+.card img {
+	height: 100px;
+}
+
 .logos {
 	filter: grayscale(1);
 	transition: filter 0.3s ease;
+}
+
+.logos.markdwon,
+.logos.nextjs,
+.logos.github {
+	filter: grayscale(1);
+}
+
+.wrapper {
+	min-height: 200px;
 }
 
 .slide:hover .logos {

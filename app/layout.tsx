@@ -1,8 +1,8 @@
 
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import AnimatedCursor from "react-animated-cursor";
 import 'swiper/swiper-bundle.css';
+import { CustomCursor } from "./components/CustomCursor";
 import { Header } from "./components/Header";
 import "./globals.css";
 
@@ -85,26 +85,8 @@ export default function RootLayout({
         `}</style>
       </head> */}
 
-			<AnimatedCursor
-				clickables={['a', 'input', 'texarea', 'button', 'select']}
-				color="#fff"
-				innerSize={8}
-				outerSize={35}
-				innerScale={1}
-				outerScale={1.7}
-				outerAlpha={0}
-				outerStyle={{
-					width: '60px',
-					height: '60px',
-					background: '#fff',
-					mixBlendMode: 'exclusion'
-				}}
-				innerStyle={{
-					background: '#fff',
-					mixBlendMode: 'exclusion'
-				}}
-			/>
-			<body >
+			<body  style={{ overflowY: 'hidden' }}>
+				<CustomCursor />
 				<Header />
 				{children}
 			</body>

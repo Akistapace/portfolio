@@ -13,7 +13,6 @@ const nextConfig = {
 			ignoreBuildErrors: true,
 		},
     images: {
-        domains: ['localhost'],
         remotePatterns: [
             {
                 protocol: 'https',

@@ -5,6 +5,7 @@
 	width: 100%;
 	font-family: var(--font-abril), serif;
 	margin-bottom: 20px;
+	color: #fff
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,26 @@
+.box {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.box p {
+	color: #fff;
+	line-height: 35px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+.image {
+	width: 100%;
+	max-width: 450px;
+	border-radius: 1rem;
+	object-fit: cover;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+}

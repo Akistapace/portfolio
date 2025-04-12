@@ -1,9 +1,7 @@
-"use client";
-
-import React from "react";
+'use client'
 
 interface Props {
-	children: React.ReactElement | string;
+	children: React.ReactElement | string
 }
 
 export const Subtitle = ({ children }: Props) => {

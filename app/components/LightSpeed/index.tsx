@@ -1,136 +1,160 @@
-"use client";
-import p5 from "p5";
-import { useEffect, useRef, useState } from "react";
-import { isMobile } from "react-device-detect";
-import style from "./style.module.css";
+'use client'
+import p5 from 'p5'
+import { useEffect, useRef, useState } from 'react'
+import { isMobile } from 'react-device-detect'
+import style from './style.module.css'
 
 const StarField: React.FC = () => {
-	const canvasRef = useRef<HTMLDivElement | null>(null);
-	const [isVisible, setIsVisible] = useState(false);
-	const p5InstanceRef = useRef<p5 | null>(null);
+	const canvasRef = useRef<HTMLDivElement | null>(null)
+	const [isVisible, setIsVisible] = useState(false)
+	const p5InstanceRef = useRef<p5 | null>(null)
 
 	useEffect(() => {
-		if (typeof window !== "undefined") {
+		if (typeof window !== 'undefined') {
 			const observer = new IntersectionObserver(
 				([entry]) => {
-					setIsVisible(entry.isIntersecting);
+					setIsVisible(entry.isIntersecting)
 				},
 				{ threshold: 0.1 }
-			);
+			)
 
 			if (canvasRef.current) {
-				observer.observe(canvasRef.current);
+				observer.observe(canvasRef.current)
 			}
 
-			return () => observer.disconnect();
+			return () => observer.disconnect()
 		}
-	}, []);
+	}, [])
 
 	useEffect(() => {
-		if (typeof window !== "undefined") {
-			const numStars = isMobile ? 50 : 200; // Reduz o número de estrelas no mobile
-			const frameRate = isMobile ? 30 : 60; // Reduz FPS para 30 no mobile
+		if (typeof window === 'undefined' || !canvasRef.current || p5InstanceRef.current) return
 
-			if (!canvasRef.current) return;
+		const numStars = isMobile ? 50 : 100
+		const frameRate = isMobile ? 30 : 60
 
-			const sketch = (p: p5) => {
-				let stars: Star[] = [];
+		const sketch = (p: p5) => {
+			const stars: Star[] = []
+			const maxStars = numStars
+			let initialized = false
 
-				p.setup = () => {
-					p.createCanvas(p.windowWidth, p.windowHeight);
-					p.frameRate(frameRate);
-					p.stroke(0);
-					p.strokeWeight(2);
+			p.setup = () => {
+				p.createCanvas(p.windowWidth, p.windowHeight)
+				p.frameRate(frameRate)
+				p.stroke(0)
+				p.strokeWeight(2)
 
-					for (let i = 0; i < numStars; i++) {
-						stars.push(new Star(p.random(p.width), p.random(p.height), p));
-					}
-				};
-
-				p.draw = () => {
-					if (!isVisible) return; // Pausa animação quando não visível
-
-					p.background(255, 50);
-					const acc = p.map(p.mouseX, 0, p.width, 0.2, 0.2);
-
-					stars = stars.filter((star) => {
-						star.draw();
-						star.update(acc);
-						return star.isActive();
-					});
-
-					while (stars.length < numStars) {
-						stars.push(new Star(p.random(p.width), p.random(p.height), p));
-					}
-				};
-
-				p.windowResized = () => {
-					p.resizeCanvas(p.windowWidth, p.windowHeight);
-				};
-
-				class Star {
-					pos: p5.Vector;
-					prevPos: p5.Vector;
-					vel: p5.Vector;
-					ang: number;
-
-					constructor(x: number, y: number, p: p5) {
-						this.pos = p.createVector(x, y);
-						this.prevPos = p.createVector(x, y);
-						this.vel = p.createVector(0, 0);
-						this.ang = p.atan2(y - p.height / 2, x - p.width / 2);
-					}
-
-					isActive() {
-						return this.onScreen(this.prevPos.x, this.prevPos.y, p);
-					}
-
-					update(acc: number) {
-						this.vel.x += p.cos(this.ang) * acc;
-						this.vel.y += p.sin(this.ang) * acc;
-
-						this.prevPos.x = this.pos.x;
-						this.prevPos.y = this.pos.y;
-
-						this.pos.x += this.vel.x;
-						this.pos.y += this.vel.y;
-					}
-
-					draw() {
-						const alpha = p.map(this.vel.mag(), 0, 3, 0, 255);
-						p.stroke(0, alpha);
-						p.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
-					}
-
-					private onScreen(x: number, y: number, p: p5) {
-						return x >= 0 && x <= p.width && y >= 0 && y <= p.height;
-					}
+				for (let i = 0; i < numStars; i++) {
+					stars.push(new Star(p.random(p.width), p.random(p.height), p))
 				}
-			};
-
-			if (isVisible) {
-				p5InstanceRef.current = new p5(sketch, canvasRef.current as HTMLElement);
-			} else {
-				p5InstanceRef.current?.remove();
-				p5InstanceRef.current = null;
 			}
 
-			return () => {
-				p5InstanceRef.current?.remove();
-				p5InstanceRef.current = null;
-			};
+			p.draw = () => {
+				p.background(255, 50)
+
+				if (!initialized) {
+					if (stars.length < maxStars) {
+						stars.push(new Star(p.random(p.width), p.random(p.height), p))
+					} else {
+						initialized = true // Começa a animar quando estiver cheio
+						const body = document.querySelector('body')
+						if (body) {
+							body.style.overflowY = 'auto'
+						}
+					}
+				}
+
+				for (const star of stars) {
+					star.draw()
+					if (initialized) {
+						star.update()
+						if (!star.isActive()) {
+							star.reset()
+						}
+					}
+				}
+			}
+
+			p.windowResized = () => {
+				p.resizeCanvas(p.windowWidth, p.windowHeight)
+			}
+
+			class Star {
+				pos: p5.Vector
+				prevPos: p5.Vector
+				vel: p5.Vector
+				ang: number
+
+				constructor(x: number, y: number, p: p5) {
+					this.pos = p.createVector(x, y)
+					this.prevPos = this.pos.copy()
+					this.vel = p.createVector(0, 0)
+					this.ang = p.atan2(y - p.height / 2, x - p.width / 2)
+				}
+
+				isActive() {
+					return this.onScreen(this.prevPos.x, this.prevPos.y, p)
+				}
+
+				update() {
+					const center = p.createVector(p.width / 2, p.height / 2)
+					const distance = this.pos.dist(center)
+					const maxDistance = p.dist(0, 0, p.width / 2, p.height / 2)
+					const acc = p.map(distance, 0, maxDistance, 0.01, 0.3) // começa devagar e acelera
+
+					this.vel.x += p.cos(this.ang) * acc
+					this.vel.y += p.sin(this.ang) * acc
+
+					this.prevPos.set(this.pos)
+					this.pos.add(this.vel)
+				}
+
+				draw() {
+					const alpha = p.map(this.vel.mag(), 0, 3, 0, 255)
+					p.stroke(0, alpha)
+					p.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y)
+				}
+
+				reset() {
+					this.pos = p.createVector(p.random(p.width), p.random(p.height))
+					this.prevPos = this.pos.copy()
+					this.vel = p.createVector(0, 0)
+					this.ang = p.atan2(this.pos.y - p.height / 2, this.pos.x - p.width / 2)
+				}
+
+				private onScreen(x: number, y: number, p: p5) {
+					return x >= 0 && x <= p.width && y >= 0 && y <= p.height
+				}
+			}
 		}
-	}, [isVisible]);
+
+		p5InstanceRef.current = new p5(sketch, canvasRef.current as HTMLElement)
+
+		return () => {
+			p5InstanceRef.current?.remove()
+			p5InstanceRef.current = null
+		}
+	}, [])
+
+	// ✅ Aqui controlamos o loop com base na visibilidade
+	useEffect(() => {
+		if (p5InstanceRef.current) {
+			if (isVisible) {
+				p5InstanceRef.current.loop()
+			} else {
+				p5InstanceRef.current.noLoop()
+			}
+		}
+	}, [isVisible])
 
 	return (
-		<div className={style.container}>
-			<div ref={canvasRef}></div>
+		<div className={`${style.container} ${style.hero}`}>
+			<div ref={canvasRef} />
 			<div className={style.box}>
 				<h1 className={style.title}>Fernando Aquistapace</h1>
 				<p className={style.subtitle}>Frontend Developer | Performance Developer</p>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default StarField;
+export default StarField

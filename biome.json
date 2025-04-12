@@ -1,0 +1,83 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"files": {
+		"ignore": [
+			"node_modules",
+			"dist",
+			"build",
+			"coverage",
+			".storybook",
+			".vitest",
+			".playwright",
+			".storybook-static"
+		]
+	},
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"formatter": {
+		"enabled": true,
+		"formatWithErrors": true,
+		"ignore": [],
+		"attributePosition": "auto",
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineWidth": 120,
+		"lineEnding": "crlf",
+		"bracketSpacing": true
+	},
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true,
+		"ignore": [
+			"node_modules",
+			"dist",
+			"build",
+			"coverage",
+			".storybook",
+			".vitest",
+			".playwright",
+			".storybook-static"
+		],
+		"rules": {
+			"recommended": true,
+			"security": {
+				"recommended": true
+			},
+			"suspicious": {
+				"recommended": true,
+				"noConsole": "error",
+				"noDebugger": "warn",
+				"noDoubleEquals": "error",
+				"noConfusingLabels": "error",
+				"noDuplicateJsxProps": "error",
+				"noDuplicateObjectKeys": "error",
+				"noEmptyInterface": "error",
+				"noFunctionAssign": "error",
+				"noImplicitAnyLet": "error",
+				"noSuspiciousSemicolonInJsx": "error"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"quoteStyle": "single",
+			"jsxQuoteStyle": "single",
+			"arrowParentheses": "asNeeded",
+			"bracketSpacing": true,
+			"quoteProperties": "asNeeded",
+			"semicolons": "asNeeded",
+			"trailingCommas": "es5"
+		}
+	},
+	"json": {
+		"formatter": {
+			"trailingCommas": "none"
+		}
+	}
+}
