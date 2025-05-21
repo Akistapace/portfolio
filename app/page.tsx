@@ -6,12 +6,13 @@ import { Projects } from './components/Projects'
 import Timeline from './components/Timeline'
 import styles from './page.module.css'
 
-const HalfGlobe = dynamic(() => import('./components/Globe/HalfGlobe'), { ssr: false })
+const HalfGlobe = lazy(() => import('./components/Globe/HalfGlobe'))
 const StarField = dynamic(() => import('./components/LightSpeed'), { ssr: false })
 const Slider = dynamic(() => import('./components/SliderDouble'), { ssr: false })
 const Title = dynamic(() => import('./components/Title'), { ssr: false })
 
 import timeline from '@/app/contents/timeline.json'
+import { Suspense, lazy } from 'react'
 import { About } from './components/About'
 
 const Home = () => {
@@ -23,8 +24,8 @@ const Home = () => {
 				</section>
 
 				<BackgroundStars>
-					<section className='container-full'>
-						<div style={{ padding: '150px 0' }}>
+					<section className='container'>
+						<div className='container pt-[100px] md:pt-[150px] pb-[50px] md:pb-[120px]'>
 							<Title title='about'>About Me</Title>
 							<p>Lorem Ipsum dolor sit ammet</p>
 							<About />
@@ -32,26 +33,26 @@ const Home = () => {
 					</section>
 
 					<section className='container-full'>
-						<div style={{ padding: '100px 0' }}>
+						<div className='py-[70px]'>
 							<Title title='experience'>Experience</Title>
 							<p>Lorem Ipsum dolor sit ammet</p>
 							<Timeline events={timeline} />
 						</div>
 					</section>
 
-					<section className='container-full'>
-						<div style={{ padding: '100px 0 20px 0' }}>
+					<section className='container-full  md:pt-[100px] pb-15'>
+						<div className='p-[50px] sm:p-[50px]'>
 							<Title title='stacks'>Stacks</Title>
 							<p>Lorem Ipsum dolor sit ammet</p>
-							<div style={{ marginTop: '100px', width: '100%' }}>
+							<div className='w-full'>
 								<Slider />
 								<Slider reverse />
 							</div>
 						</div>
 					</section>
 
-					<section className={`container-full ${styles.projects}`}>
-						<div style={{ padding: '150px 0' }}>
+					<section className={`container-full pt-10 pb-15 ${styles.projects}`}>
+						<div className='sm:p-[50px]'>
 							<Title title='projects'>Projects</Title>
 							<p>Lorem Ipsum dolor sit ammet</p>
 							<div className='container flex'>
@@ -63,13 +64,9 @@ const Home = () => {
 					<section className='container-full'>
 						<div>
 							<div
-								className='container'
+								className='container pt-[100px] flex items-center  justify-center'
 								style={{
-									paddingTop: '100px',
-									display: 'flex',
 									flexDirection: 'column',
-									alignItems: 'center',
-									justifyContent: 'space-between',
 								}}
 							>
 								<Title title='contact'>Let&apos;s change the world</Title>
@@ -118,7 +115,10 @@ const Home = () => {
 								</div>
 							</div>
 
-							<HalfGlobe />
+							{/* biome-ignore lint/complexity/noUselessFragments: <explanation> */}
+							<Suspense fallback={<></>}>
+								<HalfGlobe />
+							</Suspense>
 						</div>
 					</section>
 				</BackgroundStars>

@@ -1,81 +1,93 @@
-"use client";
+'use client'
 
-import Globe from 'globe.gl';
-import React, { useEffect, useRef, useState } from 'react';
-import * as THREE from 'three';
-import { feature } from 'topojson-client';
+import { useEffect, useRef, useState } from 'react'
 
-const HollowGlobe: React.FC = () => {
-	const globeRef = useRef<HTMLDivElement>(null);
-	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: 500 });
+const HollowGlobe = () => {
+	const globeRef = useRef<HTMLDivElement>(null)
+	const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: 500 })
 
-	// Definindo variáveis para o ponto inicial do globo no eixo X, Y e Z
-	const initialX = 0;  // Ponto inicial no eixo X (centralizado)
-	const initialY = -50; // Ponto inicial no eixo Y (para mover para baixo)
-	const initialZ = 0;  // Ponto inicial no eixo Z
-	const initialLat = 0;  // Ponto inicial do eixo Y (latitude)
-	const initialLng = 0;  // Ponto inicial do eixo X (longitude)
+	const initialX = 0
+	const initialY = -50
+	const initialZ = 0
+	const initialLat = 0
+	const initialLng = 0
 
 	useEffect(() => {
-		if (typeof window !== "undefined") {
-			const handleResize = () => {
-				setDimensions({
-					width: window.innerWidth, height: window.innerHeight * 0.4
-				});
-			};
+		if (typeof window === 'undefined') return
 
-			window.addEventListener('resize', handleResize);
-
-			return () => {
-				window.removeEventListener('resize', handleResize);
-			};
+		const handleResize = () => {
+			setDimensions({
+				width: window.innerWidth,
+				height: window.innerHeight * 0.4,
+			})
 		}
-	}, []);
 
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		if (typeof window !== "undefined") {
+		if (typeof window === 'undefined') return
+		if (!globeRef.current) return
 
-			if (!globeRef.current) return;
+		const loadGlobe = async () => {
+			const globeModule = await import('globe.gl')
+			const THREE = await import('three')
+			const topojson = await import('topojson-client')
+			const Globe = globeModule.default
+			const { feature } = topojson
 
-			const world = new Globe(globeRef.current)
+			// biome-ignore lint/style/noNonNullAssertion: <explanation>
+			const world = new Globe(globeRef.current!)
 				.backgroundColor('rgba(0,0,0,0)')
 				.showGlobe(true)
 				.showAtmosphere(true)
 				.atmosphereColor('#ebebeb')
-				.atmosphereAltitude(0.18);
+				.atmosphereAltitude(0.18)
 
-			// Aumenta o tamanho do globo
-			world.scene().scale.set(1.5, 1.5, 1.5);
+			world.scene().scale.set(1.5, 1.5, 1.5)
 
-			const whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
-			world.globeMaterial(whiteMaterial); // Aplica o material branco ao globo
-			fetch('//unpkg.com/world-atlas/land-110m.json').then(res => res.json())
-				.then(landTopo => {
-					world
-						.polygonsData(feature(landTopo, landTopo.objects.land).features)
-						.polygonCapMaterial(new THREE.MeshLambertMaterial({ color: 'black', side: THREE.DoubleSide }))
-						.polygonSideColor(() => 'rgba(0,0,0,0)');
-				});
+			const whiteMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff })
+			world.globeMaterial(whiteMaterial)
 
-			// Adicionando luz ao cenário
-			const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-			directionalLight.position.set(1, 1, 1).normalize();
-			world.scene().add(directionalLight);
+			const landDataModule = await import('./globe.json')
+			const landData = landDataModule.default
+			const landFeatureCollection = feature(
+				landData as unknown as import('topojson-specification').Topology,
+				landData.objects.land as import('topojson-specification').GeometryObject
+			)
+			const landFeatures =
+				landFeatureCollection && 'features' in landFeatureCollection ? landFeatureCollection.features : []
 
-			// Ajustando a posição do globo no espaço 3D
-			world.scene().position.set(initialX, initialY, initialZ);
+			world
+				.polygonsData(landFeatures as object[])
+				.polygonCapMaterial(new THREE.MeshLambertMaterial({ color: 'black', side: THREE.DoubleSide }))
+				.polygonSideColor(() => 'rgba(0,0,0,0)')
 
-			// Ajustes da câmera
-			world.controls().autoRotate = true;
-			world.controls().autoRotateSpeed = 1.5;
-			world.controls().enableZoom = false;
-			world.controls().enablePan = false;
-			world.pointOfView({ lat: initialLat, lng: initialLng }, 1000);
+			const directionalLight = new THREE.DirectionalLight(0xffffff, 1)
+			directionalLight.position.set(1, 1, 1).normalize()
+			world.scene().add(directionalLight)
+
+			world.scene().position.set(initialX, initialY, initialZ)
+			world.controls().autoRotate = true
+			world.controls().autoRotateSpeed = 1.5
+			world.controls().enableZoom = false
+			world.controls().enablePan = false
+			world.controls().enableRotate = false
+
+			world.pointOfView({ lat: initialLat, lng: initialLng }, 1000)
 		}
 
-	}, [initialX, initialY, initialZ, dimensions]);
+		loadGlobe()
+	}, [dimensions])
 
-	return <div ref={globeRef} style={{ width: '100%', height: `${dimensions.height}px `, overflow: 'hidden', margin: '0 auto' }} />;  // Centraliza a div no eixo X
-};
+	return (
+		<div
+			ref={globeRef}
+			style={{ width: '100%', height: `${dimensions.height}px`, overflow: 'hidden', margin: '0 auto' }}
+		/>
+	)
+}
 
-export default HollowGlobe;
+export default HollowGlobe

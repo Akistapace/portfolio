@@ -6,6 +6,7 @@ import style from './style.module.css'
 
 const StarField: React.FC = () => {
 	const canvasRef = useRef<HTMLDivElement | null>(null)
+	const scrollIconRef = useRef<HTMLDivElement | null>(null)
 	const [isVisible, setIsVisible] = useState(false)
 	const p5InstanceRef = useRef<p5 | null>(null)
 
@@ -56,10 +57,15 @@ const StarField: React.FC = () => {
 						stars.push(new Star(p.random(p.width), p.random(p.height), p))
 					} else {
 						initialized = true // Começa a animar quando estiver cheio
-						const body = document.querySelector('body')
-						if (body) {
-							body.style.overflowY = 'auto'
-						}
+						setTimeout(() => {
+							const body = document.querySelector('body')
+							if (body) {
+								body.style.overflowY = 'auto'
+							}
+							if (scrollIconRef.current) {
+								scrollIconRef.current.style.opacity = '1'
+							}
+						}, 5000)
 					}
 				}
 
@@ -135,13 +141,14 @@ const StarField: React.FC = () => {
 		}
 	}, [])
 
-	// ✅ Aqui controlamos o loop com base na visibilidade
 	useEffect(() => {
-		if (p5InstanceRef.current) {
-			if (isVisible) {
-				p5InstanceRef.current.loop()
-			} else {
-				p5InstanceRef.current.noLoop()
+		if (typeof window !== 'undefined') {
+			if (p5InstanceRef.current) {
+				if (isVisible) {
+					p5InstanceRef.current.loop()
+				} else {
+					p5InstanceRef.current.noLoop()
+				}
 			}
 		}
 	}, [isVisible])
@@ -152,6 +159,13 @@ const StarField: React.FC = () => {
 			<div className={style.box}>
 				<h1 className={style.title}>Fernando Aquistapace</h1>
 				<p className={style.subtitle}>Frontend Developer | Performance Developer</p>
+			</div>
+
+			<div
+				className='absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity'
+				ref={scrollIconRef}
+			>
+				<div className='mouse animate-bounce' />
 			</div>
 		</div>
 	)

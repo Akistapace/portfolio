@@ -11,7 +11,7 @@
 		"mainColor": "#7131c4",
 		"rotation": 10,
 		"stacks": [
-			"Remix",
+			"remix",
 			"js",
 			"liquid",
 			"sass",
@@ -39,7 +39,7 @@
 	},
 	{
 		"id": 3,
-		"title": "VTEX-Lazyloading",
+		"title": "VTEX Lazyloading",
 		"url": "https://github.com/Akistapace/vtex-lazyLoading",
 		"description": "Lazy Load plugin for components and images in a simple and controlled way to use in VTEX legacy store's",
 		"images": [
@@ -55,13 +55,13 @@
 	{
 		"id": 4,
 		"title": "Medidor de Anel Online",
-		"url": "https://github.com/Akistapace/vtex-lazyLoading",
-		"description": "A ideia deste projeto veio após surgir a necessidade de encontrar o tamanho do anel anelar de minha esposa para realizar a compra das alianças de nosso casamento",
+		"url": "https://ring-gauge.vercel.app/",
+		"description": "Ring Gauge is a simple and intuitive app that lets you measure ring sizes directly on your device's screen. It's ideal for anyone looking to discover or confirm a ring size using a physical ring as a reference",
 		"images": [
 			""
 		],
-		"thumb": "/images/npm.png",
-		"mainColor": "#cb3737",
+		"thumb": "/images/medidordeanel.png",
+		"mainColor": "#ffffff",
 		"rotation": 5,
 		"stacks": [
 			"js"

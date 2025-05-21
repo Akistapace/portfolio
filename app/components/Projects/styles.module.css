@@ -59,9 +59,8 @@
 	}
 }
 
-.image.medidordeanelonline img,
 .image.vtexlazyloading img {
-	max-width: 250px;
+	max-width: 150px;
 }
 
 .icon {

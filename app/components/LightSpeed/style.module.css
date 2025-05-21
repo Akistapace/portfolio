@@ -24,7 +24,6 @@
 	background-color: #fff;
 }
 
-
 .container canvas {
 	width: 100%;
 	height: 100vh;
@@ -33,9 +32,6 @@
 }
 
 .container .box {
-	background-color: #fff;
-	background: linear-gradient(to top, #000000, transparent 10%);
-	/* background-size: 300% 300%; */
 	z-index: 10;
 	position: absolute;
 	display: flex;
@@ -48,7 +44,6 @@
 	width: 100%;
 	height: 100%;
 	animation: fogo 2s infinite ease-in-out;
-
 }
 
 .container .title {
@@ -63,7 +58,7 @@
 .container .subtitle {
 	font-size: 1.5em;
 	display: block;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 	text-align: center;
 }
 
