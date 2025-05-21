@@ -6,13 +6,12 @@ import { Projects } from './components/Projects'
 import Timeline from './components/Timeline'
 import styles from './page.module.css'
 
-const HalfGlobe = lazy(() => import('./components/Globe/HalfGlobe'))
+const HalfGlobe = dynamic(() => import('./components/Globe/HalfGlobe'), { ssr: false })
 const StarField = dynamic(() => import('./components/LightSpeed'), { ssr: false })
 const Slider = dynamic(() => import('./components/SliderDouble'), { ssr: false })
 const Title = dynamic(() => import('./components/Title'), { ssr: false })
 
 import timeline from '@/app/contents/timeline.json'
-import { Suspense, lazy } from 'react'
 import { About } from './components/About'
 
 const Home = () => {
@@ -116,9 +115,8 @@ const Home = () => {
 							</div>
 
 							{/* biome-ignore lint/complexity/noUselessFragments: <explanation> */}
-							<Suspense fallback={<></>}>
-								<HalfGlobe />
-							</Suspense>
+
+							<HalfGlobe />
 						</div>
 					</section>
 				</BackgroundStars>
