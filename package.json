@@ -83,6 +83,7 @@
     "autoprefixer": "^10.4.17",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
+    "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",

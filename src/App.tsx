@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import { Bounce, ToastContainer } from 'react-toastify'
 import MouseTracker from './components/MouseTracking'
 import { TooltipProvider } from './components/ui/tooltip'
@@ -11,9 +11,9 @@ function App() {
 			<MouseTracker />
 			<ToastContainer />
 			<TooltipProvider>
-				<BrowserRouter>
+				<HashRouter>
 					<Router />
-				</BrowserRouter>
+				</HashRouter>
 			</TooltipProvider>
 
 			<ToastContainer
