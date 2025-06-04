@@ -1,0 +1,10 @@
+npx --no-install commitlint --edit $1 || {
+  echo -e "\033[1;31m--------------------------------------------------------------\033[0m"
+  echo -e "\033[1;33mUtilize \033[1;32mnpm run commit\033[1;33m ou siga o padrão de commit recomendado:\033[0m"
+  echo -e "\033[1;36m  feat:  \033[1;32mpara novas funcionalidades\033[0m"
+  echo -e "\033[1;36m  fix:   \033[1;32mpara correções\033[0m"
+  echo -e "\033[1;36m  docs:  \033[1;32mpara documentação\033[0m"
+  echo -e "\033[1;36m  refact: \033[1;32mpara refatorações de código\033[0m"
+  echo -e "\033[1;31m--------------------------------------------------------------\033[0m"
+  exit 1
+}

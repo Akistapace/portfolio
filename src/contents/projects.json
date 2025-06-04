@@ -1,0 +1,74 @@
+[
+	{
+		"id": 1,
+		"title": "Ihsequei",
+		"description": "Plataforma de treinos online voltada para mulheres que desejam emagrecer e ganhar massa muscular sem sair de casa. Oferece programas de exercícios rápidos, planos alimentares e suporte emocional, promovendo saúde e autoestima. Inclui loja de produtos fitness e e-books gratuitos.",
+		"images": [
+			"."
+		],
+		"url": "https://ihsequei.com.br/",
+		"thumb": "/images/ihsequei.png",
+		"video": "/videos/ihsequei.mp4",
+		"mainColor": "#7131c4",
+		"rotation": 10,
+		"stacks": [
+			"remix",
+			"js",
+			"liquid",
+			"sass",
+			"css3"
+		]
+	},
+	{
+		"id": 2,
+		"title": "Portella Cabos",
+		"description": "Empresa brasileira fundada em 1939, especializada na fabricação e fornecimento de cabos de aço e acessórios para os setores industrial, offshore e construção civil. Oferece uma ampla gama de produtos e serviços técnicos, com logística eficiente para atender clientes em todo o país.",
+		"images": [
+			""
+		],
+		"url": "https://www.portellacabos.com.br/",
+		"thumb": "/images/portellacabos.png",
+		"video": "/videos/portellacabos.mp4",
+		"mainColor": "#ffffff",
+		"rotation": -20,
+		"stacks": [
+			"wordpress",
+			"js",
+			"php",
+			"sass",
+			"css3"
+		]
+	},
+	{
+		"id": 3,
+		"title": "Vtex Lazyloading",
+		"description": "Plugin de código aberto para carregamento preguiçoso (lazy loading) de componentes e imagens em lojas VTEX. Compatível com outras plataformas, permite otimizar o desempenho do site ao carregar elementos apenas quando necessário, melhorando a experiência do usuário.",
+		"images": [
+			""
+		],
+		"url": "https://github.com/Akistapace/vtex-lazyLoading",
+		"thumb": "/images/npm.png",
+		"video": "/videos/npm.mp4",
+		"mainColor": "#cb3737",
+		"rotation": 5,
+		"stacks": [
+			"js"
+		]
+	},
+	{
+		"id": 4,
+		"title": "Medidor de Anel Online",
+		"description": "Aplicativo web gratuito que permite medir o tamanho do seu anel diretamente na tela do dispositivo. Ideal para quem deseja descobrir ou confirmar o tamanho do anel usando um anel físico como referência, de forma simples e intuitiva.",
+		"images": [
+			""
+		],
+		"url": "https://ring-gauge.vercel.app/",
+		"thumb": "/images/medidordeanel.png",
+		"video": "/videos/medidordeanel.mp4",
+		"mainColor": "#ffffff",
+		"rotation": 5,
+		"stacks": [
+			"js"
+		]
+	}
+]

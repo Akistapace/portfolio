@@ -1,0 +1,48 @@
+{
+	"files": [],
+	"references": [
+		{
+			"path": "./tsconfig.app.json"
+		},
+		{
+			"path": "./tsconfig.node.json"
+		}
+	],
+	"compilerOptions": {
+		"noEmit": true,
+		"allowJs": true,
+		"noImplicitOverride": true,
+		"verbatimModuleSyntax": true,
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"target": "ESNext",
+		"baseUrl": ".",
+		"paths": {
+			"test/*": ["src/test/*"],
+			"@/*": ["./src/*"],
+			"@test/*": ["src/test/*"],
+			"environment/*": ["./environment/*"]
+		},
+		"typeRoots": ["./node_modules/@types", "src/@types"],
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"strict": true,
+		"skipLibCheck": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictPropertyInitialization": true,
+		"noImplicitThis": true,
+		"useUnknownInCatchVariables": true,
+		"moduleResolution": "Node",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true
+	}
+}
