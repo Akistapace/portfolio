@@ -21,7 +21,7 @@ export const Card = ({ project }: Props) => {
 				<div className='flex items-center p-5 relative group cursor-pointer w-full aspect-square rounded-2xl overflow-hidden shadow-md'>
 					<img
 						loading='lazy'
-						src={thumb}
+						src={`/portfolio/images/${thumb}`}
 						alt={title}
 						className='floating w-full h-auto object-cover rounded-2xl transition-transform duration-300 group-hover:scale-105'
 					/>
@@ -40,7 +40,7 @@ export const Card = ({ project }: Props) => {
 
 				{video && (
 					<video
-						src={video}
+						src={`/portfolio/videos/${video}`}
 						autoPlay
 						muted
 						loop

@@ -27,7 +27,7 @@ const Timeline = () => {
 						return (
 							<div
 								key={event.title}
-								className={`relative flex flex-col md:flex-row items-center w-full mt-[70px]  md:mb-0 ${isLeft ? 'md:justify-end' : 'md:justify-start'}`}
+								className={`relative flex flex-col md:flex-row items-center w-full mt-[70px] md:mb-0 ${isLeft ? 'md:justify-end' : 'md:justify-start'}`}
 							>
 								{/* Texto com animação */}
 								<motion.div
@@ -51,7 +51,7 @@ const Timeline = () => {
 								</motion.div>
 
 								{/* Data centralizada */}
-								<div className='z-10 w-24 h-10 rounded-full font-bold text-sm flex items-center justify-center absolute left-1/2 transform -translate-x-1/2 bg-white text-gray-800 md:top-0 -top-[60px] shadow'>
+								<div className='z-10 w-24 h-10 rounded-full font-bold text-sm flex items-center justify-center absolute left-1/2 transform -translate-x-1/2  bg-gray-900 dark:bg-white text-white dark:text-gray-800 md:top-0 -top-[60px] shadow'>
 									{event.date}
 								</div>
 							</div>

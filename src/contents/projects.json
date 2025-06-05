@@ -7,8 +7,8 @@
 			"."
 		],
 		"url": "https://ihsequei.com.br/",
-		"thumb": "/images/ihsequei.png",
-		"video": "/videos/ihsequei.mp4",
+		"thumb": "ihsequei.png",
+		"video": "ihsequei.mp4",
 		"mainColor": "#7131c4",
 		"rotation": 10,
 		"stacks": [
@@ -27,8 +27,8 @@
 			""
 		],
 		"url": "https://www.portellacabos.com.br/",
-		"thumb": "/images/portellacabos.png",
-		"video": "/videos/portellacabos.mp4",
+		"thumb": "portellacabos.png",
+		"video": "portellacabos.mp4",
 		"mainColor": "#ffffff",
 		"rotation": -20,
 		"stacks": [
@@ -47,8 +47,8 @@
 			""
 		],
 		"url": "https://github.com/Akistapace/vtex-lazyLoading",
-		"thumb": "/images/npm.png",
-		"video": "/videos/npm.mp4",
+		"thumb": "npm.png",
+		"video": "vtexlazyloading.mp4",
 		"mainColor": "#cb3737",
 		"rotation": 5,
 		"stacks": [
@@ -63,8 +63,8 @@
 			""
 		],
 		"url": "https://ring-gauge.vercel.app/",
-		"thumb": "/images/medidordeanel.png",
-		"video": "/videos/medidordeanel.mp4",
+		"thumb": "medidordeanel.png",
+		"video": "medidordeanel.mp4",
 		"mainColor": "#ffffff",
 		"rotation": 5,
 		"stacks": [

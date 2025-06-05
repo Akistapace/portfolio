@@ -39,7 +39,7 @@ export default function HomePage() {
 				<StarField />
 			</section>
 
-			<div className='w-full bg-stone-300 dark:bg-black relative' id='about'>
+			<div className='w-full bg-neutral-100 dark:bg-black relative' id='about'>
 				<div className='stars' />
 				<div className='container mx-auto flex flex-col items-center justify-center pt-[100px] md:pt-[150px] pb-[50px] md:pb-[100px]'>
 					<h2 className='title text-black dark:text-white text-center' title='about'>
@@ -49,7 +49,7 @@ export default function HomePage() {
 					<About />
 				</div>
 			</div>
-			<div className='w-full bg-stone-300 dark:bg-black relative' id='experience'>
+			<div className='w-full bg-neutral-100 dark:bg-black relative' id='experience'>
 				<div className='stars' />
 				<div className='container mx-auto flex flex-col items-center justify-center pt-[100px] md:pt-[150px] pb-[50px] md:pb-[120px]'>
 					<h2 className='title text-black dark:text-white text-center' title='about'>
@@ -61,7 +61,7 @@ export default function HomePage() {
 					<Timeline />
 				</div>
 			</div>
-			<div className='w-full bg-stone-300 dark:bg-black relative' id='stacks'>
+			<div className='w-full bg-neutral-100 dark:bg-black relative' id='stacks'>
 				<div className='stars' />
 				<div className='flex flex-col items-center justify-center pt-[100px] md:pt-[150px] pb-[50px] md:pb-[80px]'>
 					<h2 className='container mx-auto title text-black dark:text-white text-center' title='about'>
@@ -75,7 +75,7 @@ export default function HomePage() {
 
 				<div ref={globeTriggerRef} />
 			</div>
-			<div className='w-full bg-stone-300 dark:bg-black relative' id='projects'>
+			<div className='w-full bg-neutral-100 dark:bg-black relative' id='projects'>
 				<div className='stars' />
 				<div className='container mx-auto flex flex-col items-center justify-center pt-[100px] md:pt-[150px] pb-[50px] md:pb-[100px] px-4'>
 					<h2 className='title text-black dark:text-white text-center ' title='about'>
@@ -88,7 +88,7 @@ export default function HomePage() {
 				</div>
 			</div>
 
-			<section className='w-full overflow-hidden bg-stone-300 dark:bg-black ' id='contact'>
+			<section className='w-full overflow-hidden bg-neutral-100 dark:bg-black ' id='contact'>
 				<div className='stars' />
 				<div className='flex flex-col items-center justify-center overflow-hidden'>
 					<div className='container mx-auto pt-[100px] flex flex-col items-center justify-center'>
