@@ -25,17 +25,15 @@ export const Card = ({ project }: Props) => {
 				/>
 			</div>
 
-			<div className='absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
-				<a
-					href={url}
-					title={title}
-					className='text-white text-sm sm:text-base flex flex-col items-center gap-2'
-					target='_blank'
-					rel='noreferrer'
-				>
-					<Eye className='w-7 h-7' />
-				</a>
-			</div>
+			<a
+				href={url}
+				title={title}
+				rel='noreferrer'
+				target='_blank'
+				className='absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'
+			>
+				<Eye className='w-7 h-7' color='white' />
+			</a>
 		</div>
 	)
 }
