@@ -4,7 +4,7 @@ import { Card } from './Card'
 export const Projects = () => {
 	return (
 		<div className='container flex flex-col'>
-			<div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10 place-items-center'>
+			<div className='grid grid-cols-1 md:grid-cols-3 gap-2 place-items-center justify-center'>
 				{projects?.map(tech => (
 					<Card key={tech.id} project={tech} />
 				))}

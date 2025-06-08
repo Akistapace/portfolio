@@ -69,7 +69,7 @@ select:focus {
 	transition: width 0.2s linear;
 	background-color: #000;
 	position: absolute;
-	bottom: -5px;
+	bottom: -2px;
 	left: 0;
 }
 

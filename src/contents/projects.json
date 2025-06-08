@@ -3,14 +3,9 @@
 		"id": 1,
 		"title": "Ihsequei",
 		"description": "Plataforma de treinos online voltada para mulheres que desejam emagrecer e ganhar massa muscular sem sair de casa. Oferece programas de exercícios rápidos, planos alimentares e suporte emocional, promovendo saúde e autoestima. Inclui loja de produtos fitness e e-books gratuitos.",
-		"images": [
-			"."
-		],
 		"url": "https://ihsequei.com.br/",
 		"thumb": "ihsequei.png",
 		"video": "ihsequei.mp4",
-		"mainColor": "#7131c4",
-		"rotation": 10,
 		"stacks": [
 			"remix",
 			"js",
@@ -23,14 +18,9 @@
 		"id": 2,
 		"title": "Portella Cabos",
 		"description": "Empresa brasileira fundada em 1939, especializada na fabricação e fornecimento de cabos de aço e acessórios para os setores industrial, offshore e construção civil. Oferece uma ampla gama de produtos e serviços técnicos, com logística eficiente para atender clientes em todo o país.",
-		"images": [
-			""
-		],
 		"url": "https://www.portellacabos.com.br/",
 		"thumb": "portellacabos.png",
 		"video": "portellacabos.mp4",
-		"mainColor": "#ffffff",
-		"rotation": -20,
 		"stacks": [
 			"wordpress",
 			"js",
@@ -43,14 +33,9 @@
 		"id": 3,
 		"title": "Vtex Lazyloading",
 		"description": "Plugin de código aberto para carregamento preguiçoso (lazy loading) de componentes e imagens em lojas VTEX. Compatível com outras plataformas, permite otimizar o desempenho do site ao carregar elementos apenas quando necessário, melhorando a experiência do usuário.",
-		"images": [
-			""
-		],
 		"url": "https://github.com/Akistapace/vtex-lazyLoading",
-		"thumb": "npm.png",
+		"thumb": "vtexlazyloading.png",
 		"video": "vtexlazyloading.mp4",
-		"mainColor": "#cb3737",
-		"rotation": 5,
 		"stacks": [
 			"js"
 		]
@@ -59,16 +44,88 @@
 		"id": 4,
 		"title": "Medidor de Anel Online",
 		"description": "Aplicativo web gratuito que permite medir o tamanho do seu anel diretamente na tela do dispositivo. Ideal para quem deseja descobrir ou confirmar o tamanho do anel usando um anel físico como referência, de forma simples e intuitiva.",
-		"images": [
-			""
-		],
 		"url": "https://ring-gauge.vercel.app/",
 		"thumb": "medidordeanel.png",
 		"video": "medidordeanel.mp4",
-		"mainColor": "#ffffff",
-		"rotation": 5,
 		"stacks": [
 			"js"
+		]
+	},
+	{
+		"id": 5,
+		"title": "Vtex Easy Deploy",
+		"description": "",
+		"url": "https://github.com/Akistapace/vtex-easy-deploy",
+		"thumb": "vtexeasydeploy.png",
+		"video": "",
+		"stacks": [
+			"js"
+		]
+	},
+	{
+		"id": 6,
+		"title": "Pokedéx",
+		"description": "",
+		"url": "https://akistapace.github.io/Pokedex/",
+		"thumb": "pokedex.png",
+		"video": "",
+		"stacks": [
+			"js",
+			"css"
+		]
+	},
+	{
+		"id": 7,
+		"title": "Pokeball",
+		"description": "",
+		"url": "https://akistapace.github.io/Pokeball/",
+		"thumb": "pokebola.png",
+		"video": "",
+		"stacks": [
+			"css"
+		]
+	},
+	{
+		"id": 8,
+		"title": "Hire Me - Ecommerce",
+		"description": "",
+		"url": "https://akistapace.github.io/frontend-challenge-pleno/",
+		"thumb": "hireme.png",
+		"video": "",
+		"stacks": [
+			"css",
+			"js",
+			"reactjs",
+			"html",
+			"sass"
+		]
+	},
+	{
+		"id": 9,
+		"title": "Hire Me !! - Ecommerce",
+		"description": "",
+		"url": "https://akistapace.github.io/site-simples-Jr/",
+		"thumb": "hiremeII.png",
+		"video": "",
+		"stacks": [
+			"css",
+			"js",
+			"reactjs",
+			"html",
+			"sass"
+		]
+	},
+	{
+		"id": 10,
+		"title": "Bootstrap Site",
+		"description": "",
+		"url": "https://akistapace.github.io/site-in-bootstrap/",
+		"thumb": "bootstrapsite.png",
+		"video": "",
+		"stacks": [
+			"css",
+			"bootstrap",
+			"html"
 		]
 	}
 ]

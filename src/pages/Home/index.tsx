@@ -77,7 +77,7 @@ export default function HomePage() {
 			</div>
 			<div className='w-full bg-neutral-100 dark:bg-black relative' id='projects'>
 				<div className='stars' />
-				<div className='container mx-auto flex flex-col items-center justify-center pt-[100px] md:pt-[150px] pb-[50px] md:pb-[100px] px-4'>
+				<div className='container mx-auto flex flex-col items-center justify-center pt-[100px] md:pt-[100px] pb-[50px] md:pb-[50px] px-4'>
 					<h2 className='title text-black dark:text-white text-center ' title='about'>
 						Projects
 					</h2>

@@ -27,6 +27,7 @@ const techLogos = [
 	'markdown',
 	'zod',
 	'html5',
+	'liquid',
 ] as const
 
 type TechLogo = (typeof techLogos)[number]
@@ -55,6 +56,7 @@ const IconImports: Record<TechLogo, () => Promise<{ default: string }>> = {
 	antd: () => import('/icons/antd.png'),
 	markdown: () => import('/icons/markdown.png'),
 	zod: () => import('/icons/zod.png'),
+	liquid: () => import('/icons/liquid.png'),
 }
 
 const Slider = ({ reverse }: { reverse?: boolean }) => {
@@ -78,7 +80,7 @@ const Slider = ({ reverse }: { reverse?: boolean }) => {
 		<div className={`sliderTrack ${reverse ? 'reverse' : 'forward'}`}>
 			{logosToDisplay.map((tech, index) => (
 				<div
-					className='h-[200px] flex items-center justify-center mx-2 grow-0 shrink-0 basis-auto rounded-md bg-stone-200 dark:bg-stone-800 aspect-square p-4 grayscale hover:grayscale-0'
+					className='h-[150px] md:h-[200px] flex items-center justify-center mx-2 grow-0 shrink-0 basis-auto rounded-md bg-stone-200 dark:bg-stone-800 aspect-square p-4 grayscale hover:grayscale-0'
 					key={`${tech}-${
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						index
@@ -86,9 +88,9 @@ const Slider = ({ reverse }: { reverse?: boolean }) => {
 					title={tech}
 				>
 					{loadedImages[tech] ? (
-						<img src={loadedImages[tech]} alt={tech} className='h-[100px] object-contain w-auto' />
+						<img src={loadedImages[tech]} alt={tech} className='h-[70px] md:h-[100px] object-contain w-auto' />
 					) : (
-						<StackIcon name={tech} className='h-[40px] object-contain w-auto' />
+						<StackIcon name={tech} className='h-[30px] md:h-[40px] object-contain w-auto' />
 					)}
 				</div>
 			))}

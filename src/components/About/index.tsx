@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 const textVariants = {
 	hidden: { opacity: 0 },
@@ -17,6 +18,8 @@ const letterVariants = {
 }
 
 export const About = () => {
+	const [hovered, setHovered] = useState(false)
+
 	const splitText = (text: string) => {
 		return text.split('').map((char, index) => (
 			// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
@@ -28,9 +31,13 @@ export const About = () => {
 
 	return (
 		<div className='container flex flex-col md:flex-row gap-10 px-4'>
-			<div className='container flex px-4 justify-center items-center'>
+			<div
+				className='container flex px-4 justify-center items-center transition-all'
+				onMouseEnter={() => setHovered(true)}
+				onMouseLeave={() => setHovered(false)}
+			>
 				<motion.img
-					src='https://placehold.jp/450x450.png'
+					src={hovered ? '/portfolio/images/eu.JPG' : '/portfolio/images/eu-gray.JPG'}
 					alt='Fernando Aquistapace'
 					className='rounded-2xl h-[300px] md:h-[450px] aspect-square object-cover'
 					initial={{ opacity: 0, y: 20 }}
