@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
 		color: '#1a1a1a',
 	},
 	header: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
 		backgroundColor: '#262220',
 		color: '#ffffff',
 		paddingVertical: 28,
@@ -21,11 +24,9 @@ const styles = StyleSheet.create({
 		fontSize: 11,
 		color: '#d9d3cd',
 	},
-	contactRow: {
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
-		gap: 16,
-		marginTop: -34,
+	contactCol: {
+		alignItems: 'flex-end',
+		gap: 4,
 	},
 	contactItem: {
 		fontSize: 9,
@@ -153,9 +154,11 @@ export const ResumeDocument = () => (
 	<Document title='Fernando Aquistapace - CV' author='Fernando Aquistapace'>
 		<Page size='A4' style={styles.page}>
 			<View style={styles.header}>
-				<Text style={styles.name}>Fernando Aquistapace</Text>
-				<Text style={styles.title}>Frontend | VTEX | Web Performance</Text>
-				<View style={styles.contactRow}>
+				<View>
+					<Text style={styles.name}>Fernando Aquistapace</Text>
+					<Text style={styles.title}>Frontend | VTEX | Web Performance</Text>
+				</View>
+				<View style={styles.contactCol}>
 					<Text style={styles.contactItem}>+55 51 985654436</Text>
 					<Text style={styles.contactItem}>fernando.akistapace@gmail.com</Text>
 					<Text style={styles.contactItem}>Canoas / RS-Brasil</Text>
