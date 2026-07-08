@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#262220',
 		color: '#ffffff',
 		paddingVertical: 28,
-		paddingHorizontal: 32,
+		paddingHorizontal: 18,
 	},
 	name: {
 		fontSize: 26,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 	body: {
 		flexDirection: 'row',
 		paddingTop: 24,
-		paddingHorizontal: 32,
+		paddingHorizontal: 18,
 		paddingBottom: 32,
 		gap: 24,
 	},
