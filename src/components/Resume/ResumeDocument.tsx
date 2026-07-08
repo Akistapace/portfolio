@@ -1,4 +1,4 @@
-import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer'
+import { Document, Page, Path, StyleSheet, Svg, Text, View } from '@react-pdf/renderer'
 
 const styles = StyleSheet.create({
 	page: {
@@ -9,25 +9,33 @@ const styles = StyleSheet.create({
 	header: {
 		backgroundColor: '#262220',
 		color: '#ffffff',
-		paddingVertical: 28,
+		paddingVertical: 44,
 		paddingHorizontal: 32,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'flex-start',
+	},
+	headerLeft: {
+		gap: 8,
 	},
 	name: {
-		fontSize: 26,
+		fontSize: 32,
 		fontFamily: 'Helvetica-Bold',
-		marginBottom: 6,
 	},
 	title: {
-		fontSize: 11,
+		fontSize: 12,
 		color: '#d9d3cd',
 	},
-	contactRow: {
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
-		gap: 16,
-		marginTop: -34,
+	contactCol: {
+		alignItems: 'flex-end',
+		gap: 8,
 	},
 	contactItem: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 6,
+	},
+	contactText: {
 		fontSize: 9,
 		color: '#ffffff',
 	},
@@ -99,6 +107,36 @@ const styles = StyleSheet.create({
 	},
 })
 
+const IconPhone = () => (
+	<Svg width={9} height={9} viewBox='0 0 24 24'>
+		<Path
+			d='M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384'
+			stroke='#ffffff'
+			strokeWidth={2}
+			fill='none'
+		/>
+	</Svg>
+)
+
+const IconMail = () => (
+	<Svg width={9} height={9} viewBox='0 0 24 24'>
+		<Path d='M2 4h20v16H2z' stroke='#ffffff' strokeWidth={2} fill='none' />
+		<Path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7' stroke='#ffffff' strokeWidth={2} fill='none' />
+	</Svg>
+)
+
+const IconPin = () => (
+	<Svg width={9} height={9} viewBox='0 0 24 24'>
+		<Path
+			d='M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0'
+			stroke='#ffffff'
+			strokeWidth={2}
+			fill='none'
+		/>
+		<Path d='M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6' stroke='#ffffff' strokeWidth={2} fill='none' />
+	</Svg>
+)
+
 const skills = [
 	'Javascript',
 	'React',
@@ -153,12 +191,23 @@ export const ResumeDocument = () => (
 	<Document title='Fernando Aquistapace - CV' author='Fernando Aquistapace'>
 		<Page size='A4' style={styles.page}>
 			<View style={styles.header}>
-				<Text style={styles.name}>Fernando Aquistapace</Text>
-				<Text style={styles.title}>Frontend | VTEX | Web Performance</Text>
-				<View style={styles.contactRow}>
-					<Text style={styles.contactItem}>+55 51 985654436</Text>
-					<Text style={styles.contactItem}>fernando.akistapace@gmail.com</Text>
-					<Text style={styles.contactItem}>Canoas / RS-Brasil</Text>
+				<View style={styles.headerLeft}>
+					<Text style={styles.name}>Fernando Aquistapace</Text>
+					<Text style={styles.title}>Frontend | VTEX | Web Performance</Text>
+				</View>
+				<View style={styles.contactCol}>
+					<View style={styles.contactItem}>
+						<Text style={styles.contactText}>+55 51 985654436</Text>
+						<IconPhone />
+					</View>
+					<View style={styles.contactItem}>
+						<Text style={styles.contactText}>fernando.akistapace@gmail.com</Text>
+						<IconMail />
+					</View>
+					<View style={styles.contactItem}>
+						<Text style={styles.contactText}>Canoas / RS-Brasil</Text>
+						<IconPin />
+					</View>
 				</View>
 			</View>
 
