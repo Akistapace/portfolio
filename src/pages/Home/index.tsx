@@ -1,5 +1,6 @@
 import { About } from '@/components/About'
 import { Projects } from '@/components/Projects'
+import { DownloadResumeButton } from '@/components/Resume'
 import SliderStacks from '@/components/SliderStacks'
 import StarField from '@/components/StarField'
 import Timeline from '@/components/Timeline'
@@ -142,6 +143,8 @@ export default function HomePage() {
 								</svg>
 							</a>
 						</div>
+
+						<DownloadResumeButton className='mt-8' />
 					</div>
 
 					{shouldLoadGlobe && (
