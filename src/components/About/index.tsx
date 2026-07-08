@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
+import { DownloadResumeButton } from '@/components/Resume'
+
 const textVariants = {
 	hidden: { opacity: 0 },
 	visible: {
@@ -76,6 +78,8 @@ export const About = () => {
 						)}
 					</motion.p>
 				</div>
+
+				<DownloadResumeButton />
 			</div>
 		</div>
 	)
