@@ -129,7 +129,7 @@ const Slider = ({ reverse }: { reverse?: boolean }) => {
 							{loadedImages[tech] ? (
 								<img src={loadedImages[tech]} alt={tech} className='h-[70px] md:h-[100px] object-contain w-auto' />
 							) : (
-								<StackIcon name={tech} className='h-[30px] md:h-[40px] object-contain w-auto' />
+								<StackIcon name={tech} className='h-[70px] md:h-[100px] object-contain w-auto' />
 							)}
 						</div>
 					</TooltipTrigger>
