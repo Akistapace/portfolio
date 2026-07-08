@@ -1,5 +1,17 @@
 [
 	{
+		"id": 11,
+		"title": "LoveReplay",
+		"description": "Plataforma que gera o \"Wrapped do amor\": basta subir o chat do WhatsApp do casal para receber uma retrospectiva do relacionamento com números, momentos marcantes e narrativa criada por IA.",
+		"url": "https://lovereplay-ai.com/",
+		"thumb": "lovereplayai.png",
+		"video": "",
+		"stacks": [
+			"js",
+			"reactjs"
+		]
+	},
+	{
 		"id": 1,
 		"title": "Ihsequei",
 		"description": "Plataforma de treinos online voltada para mulheres que desejam emagrecer e ganhar massa muscular sem sair de casa. Oferece programas de exercícios rápidos, planos alimentares e suporte emocional, promovendo saúde e autoestima. Inclui loja de produtos fitness e e-books gratuitos.",
