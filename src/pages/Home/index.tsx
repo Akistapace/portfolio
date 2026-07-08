@@ -68,7 +68,8 @@ export default function HomePage() {
 						Stacks
 					</h2>
 					<p className='container mx-auto text-black dark:text-white text-center mt-4 mb-20'>
-						Here you can find my main stacks as a Front-end developer
+						A look at my core stack as a Front-end developer, plus other tools and technologies I've picked up along the
+						way
 					</p>
 					<SliderStacks />
 				</div>
