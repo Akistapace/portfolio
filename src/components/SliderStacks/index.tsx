@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import StackIcon from 'tech-stack-icons'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 const techLogos = [
 	'typescript',
@@ -118,23 +117,20 @@ const Slider = ({ reverse }: { reverse?: boolean }) => {
 	return (
 		<div className={`sliderTrack ${reverse ? 'reverse' : 'forward'}`}>
 			{logosToDisplay.map((tech, index) => (
-				<Tooltip
+				<div
 					key={`${tech}-${
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						index
 					}`}
+					title={techLabels[tech]}
+					className='h-[150px] md:h-[200px] flex items-center justify-center mx-2 grow-0 shrink-0 basis-auto rounded-md bg-stone-200 dark:bg-stone-800 aspect-square p-4 grayscale hover:grayscale-0'
 				>
-					<TooltipTrigger asChild>
-						<div className='h-[150px] md:h-[200px] flex items-center justify-center mx-2 grow-0 shrink-0 basis-auto rounded-md bg-stone-200 dark:bg-stone-800 aspect-square p-4 grayscale hover:grayscale-0'>
-							{loadedImages[tech] ? (
-								<img src={loadedImages[tech]} alt={tech} className='h-[70px] md:h-[100px] object-contain w-auto' />
-							) : (
-								<StackIcon name={tech} className='h-[30px] md:h-[40px] object-contain w-auto' />
-							)}
-						</div>
-					</TooltipTrigger>
-					<TooltipContent>{techLabels[tech]}</TooltipContent>
-				</Tooltip>
+					{loadedImages[tech] ? (
+						<img src={loadedImages[tech]} alt={tech} className='h-[70px] md:h-[100px] object-contain w-auto' />
+					) : (
+						<StackIcon name={tech} className='h-[30px] md:h-[40px] object-contain w-auto' />
+					)}
+				</div>
 			))}
 		</div>
 	)
