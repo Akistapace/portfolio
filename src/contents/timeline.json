@@ -1,32 +1,93 @@
 [
 	{
+		"title": "Ilegra | Elite Business",
+		"description": {
+			"en": "Working on an international project as Senior Frontend / Fullstack Developer, building and evolving a Business Exchange SaaS platform. Responsible for end-to-end feature implementation, including backend (Node.js), frontend (React/Next.js), API integrations, and new solutions such as the Valuation Report module and the in-app electronic signature flow using Documenso, contributing to the product's scalability, usability, and continuous evolution.",
+			"pt-BR": "Atuação em projeto internacional como Senior Frontend / Fullstack Developer, desenvolvendo e evoluindo uma plataforma SaaS de Business Exchange. Responsável pela implementação de funcionalidades end-to-end, incluindo backend (Node.js), frontend (React/Next.js), integrações com APIs e novas soluções como o módulo de Valuation Report e o fluxo de assinatura eletrônica in-app utilizando Documenso, contribuindo para a escalabilidade, usabilidade e evolução contínua do produto.",
+			"es": "Trabajo en un proyecto internacional como Senior Frontend / Fullstack Developer, construyendo y evolucionando una plataforma SaaS de Business Exchange. Responsable de la implementación de funcionalidades end-to-end, incluyendo backend (Node.js), frontend (React/Next.js), integraciones con APIs y nuevas soluciones como el módulo de Valuation Report y el flujo de firma electrónica in-app utilizando Documenso, contribuyendo a la escalabilidad, usabilidad y evolución continua del producto."
+		},
+		"date": {
+			"en": "Today",
+			"pt-BR": "Atualmente",
+			"es": "Actualidad"
+		}
+	},
+	{
 		"title": "Ilegra | SLC Agrícola",
-		"description": "I contributed to the development of platforms for farm management and internal operational workflows required by the company. My work focused on delivering high-performance systems, following best development practices, and sharing knowledge and experience across teams.",
-		"date": "Today"
+		"description": {
+			"en": "I contributed to the development of platforms for farm management and internal operational workflows required by the company. My work focused on delivering high-performance systems, following best development practices, and sharing knowledge and experience across teams.",
+			"pt-BR": "Contribuí no desenvolvimento de plataformas para gestão de fazendas e fluxos operacionais internos exigidos pela empresa. Meu trabalho focou em entregar sistemas de alta performance, seguindo boas práticas de desenvolvimento e compartilhando conhecimento e experiência entre times.",
+			"es": "Contribuí en el desarrollo de plataformas para la gestión de granjas y flujos operativos internos requeridos por la empresa. Mi trabajo se centró en entregar sistemas de alto rendimiento, siguiendo buenas prácticas de desarrollo y compartiendo conocimiento y experiencia entre equipos."
+		},
+		"date": {
+			"en": "2025 - 2026",
+			"pt-BR": "2025 - 2026",
+			"es": "2025 - 2026"
+		}
 	},
 	{
 		"title": "Corebiz | Samsung Brazil",
-		"description": "I led the performance efforts for the Samsung Brazil stores, focusing on boosting web performance, delivering an exceptional user experience, and driving higher conversion rates. During my time at Samsung Brazil, I implemented key improvements that enhanced both the site's performance and its scalability.",
-		"date": "2023 - 2025"
+		"description": {
+			"en": "I led the performance efforts for the Samsung Brazil stores, focusing on boosting web performance, delivering an exceptional user experience, and driving higher conversion rates. During my time at Samsung Brazil, I implemented key improvements that enhanced both the site's performance and its scalability.",
+			"pt-BR": "Liderei os esforços de performance para as lojas Samsung Brasil, focando em melhorar a performance web, entregar uma experiência de usuário excepcional e impulsionar maiores taxas de conversão. Durante minha passagem pela Samsung Brasil, implementei melhorias fundamentais que aprimoraram tanto a performance quanto a escalabilidade do site.",
+			"es": "Lideré los esfuerzos de rendimiento para las tiendas de Samsung Brasil, enfocándome en mejorar el rendimiento web, ofrecer una experiencia de usuario excepcional e impulsar mayores tasas de conversión. Durante mi paso por Samsung Brasil, implementé mejoras clave que potenciaron tanto el rendimiento como la escalabilidad del sitio."
+		},
+		"date": {
+			"en": "2023 - 2025",
+			"pt-BR": "2023 - 2025",
+			"es": "2023 - 2025"
+		}
 	},
 	{
 		"title": "Corebiz | Samsung Argentina",
-		"description": "I worked for 3 months on the Samsung Argentina store, focusing on resolving a critical performance issue that required quick stabilization. During my time there, I implemented significant improvements that helped optimize and stabilize the platform.",
-		"date": "2023"
+		"description": {
+			"en": "I worked for 3 months on the Samsung Argentina store, focusing on resolving a critical performance issue that required quick stabilization. During my time there, I implemented significant improvements that helped optimize and stabilize the platform.",
+			"pt-BR": "Trabalhei por 3 meses na loja Samsung Argentina, focando na resolução de um problema crítico de performance que exigia estabilização rápida. Durante esse período, implementei melhorias significativas que ajudaram a otimizar e estabilizar a plataforma.",
+			"es": "Trabajé durante 3 meses en la tienda de Samsung Argentina, enfocándome en resolver un problema crítico de rendimiento que requería una estabilización rápida. Durante ese tiempo, implementé mejoras significativas que ayudaron a optimizar y estabilizar la plataforma."
+		},
+		"date": {
+			"en": "2023",
+			"pt-BR": "2023",
+			"es": "2023"
+		}
 	},
 	{
 		"title": "Corebiz | Puppis Argentina",
-		"description": "I was responsible for maintaining the Puppis store (puppis.com.ar), a leading retailer in the pet industry. I ensured the platform remained fully operational and resolved technical issues as they arose. Additionally, I worked closely with the team to optimize site performance and enhance the user experience.",
-		"date": "2022 - 2023"
+		"description": {
+			"en": "I was responsible for maintaining the Puppis store (puppis.com.ar), a leading retailer in the pet industry. I ensured the platform remained fully operational and resolved technical issues as they arose. Additionally, I worked closely with the team to optimize site performance and enhance the user experience.",
+			"pt-BR": "Fui responsável pela manutenção da loja Puppis (puppis.com.ar), uma das principais varejistas do setor pet. Garanti que a plataforma permanecesse totalmente operacional e resolvi problemas técnicos conforme surgiam. Além disso, trabalhei em conjunto com o time para otimizar a performance do site e aprimorar a experiência do usuário.",
+			"es": "Fui responsable del mantenimiento de la tienda Puppis (puppis.com.ar), una de las principales minoristas del sector de mascotas. Me aseguré de que la plataforma se mantuviera totalmente operativa y resolví problemas técnicos a medida que surgían. Además, trabajé de cerca con el equipo para optimizar el rendimiento del sitio y mejorar la experiencia del usuario."
+		},
+		"date": {
+			"en": "2022 - 2023",
+			"pt-BR": "2022 - 2023",
+			"es": "2022 - 2023"
+		}
 	},
 	{
 		"title": "Vnda Ecommerce",
-		"description": "I developed new stores and features on the Vnda platform, and improved existing websites using advanced skills in Liquid, JavaScript, HTML, and CSS. I ensured that all projects met client specifications and aligned with the company's quality standards. I also collaborated with the team to troubleshoot issues and optimize website performance.",
-		"date": "2021 - 2022"
+		"description": {
+			"en": "I developed new stores and features on the Vnda platform, and improved existing websites using advanced skills in Liquid, JavaScript, HTML, and CSS. I ensured that all projects met client specifications and aligned with the company's quality standards. I also collaborated with the team to troubleshoot issues and optimize website performance.",
+			"pt-BR": "Desenvolvi novas lojas e funcionalidades na plataforma Vnda, e aprimorei sites existentes utilizando habilidades avançadas em Liquid, JavaScript, HTML e CSS. Garanti que todos os projetos atendessem às especificações do cliente e estivessem alinhados com os padrões de qualidade da empresa. Também colaborei com o time para solucionar problemas e otimizar a performance dos sites.",
+			"es": "Desarrollé nuevas tiendas y funcionalidades en la plataforma Vnda, y mejoré sitios existentes utilizando habilidades avanzadas en Liquid, JavaScript, HTML y CSS. Me aseguré de que todos los proyectos cumplieran con las especificaciones del cliente y se alinearan con los estándares de calidad de la empresa. También colaboré con el equipo para resolver problemas y optimizar el rendimiento de los sitios."
+		},
+		"date": {
+			"en": "2021 - 2022",
+			"pt-BR": "2021 - 2022",
+			"es": "2021 - 2022"
+		}
 	},
 	{
 		"title": "Nerau CX",
-		"description": "I worked as a junior developer, turning Figma layouts into fully functional websites while maintaining design fidelity. I provided support for e-commerce platforms across multiple systems, fixing bugs and implementing improvements to enhance performance and user experience.",
-		"date": "2020 - 2021"
+		"description": {
+			"en": "I worked as a junior developer, turning Figma layouts into fully functional websites while maintaining design fidelity. I provided support for e-commerce platforms across multiple systems, fixing bugs and implementing improvements to enhance performance and user experience.",
+			"pt-BR": "Atuei como desenvolvedor júnior, transformando layouts do Figma em sites totalmente funcionais mantendo a fidelidade do design. Dei suporte a plataformas de e-commerce em diversos sistemas, corrigindo bugs e implementando melhorias para aprimorar performance e experiência do usuário.",
+			"es": "Trabajé como desarrollador junior, transformando diseños de Figma en sitios web totalmente funcionales manteniendo la fidelidad del diseño. Brindé soporte a plataformas de e-commerce en múltiples sistemas, corrigiendo errores e implementando mejoras para potenciar el rendimiento y la experiencia del usuario."
+		},
+		"date": {
+			"en": "2020 - 2021",
+			"pt-BR": "2020 - 2021",
+			"es": "2020 - 2021"
+		}
 	}
 ]

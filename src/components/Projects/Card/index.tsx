@@ -3,7 +3,7 @@ import { Eye } from 'lucide-react' // Ícone opcional
 interface Props {
 	project: {
 		title: string
-		description?: string
+		description?: Record<string, string>
 		thumb: string
 		url: string
 		video?: string
@@ -15,13 +15,14 @@ export const Card = ({ project }: Props) => {
 	const { title, thumb, url } = project
 
 	return (
-		<div className='flex items-center grayscale hover:grayscale-0 transition-all will-change-auto p-5 relative group cursor-pointer w-full overflow-hidden shadow-md bg-neutral-200 dark:bg-transparent'>
-			<div className='floating w-full h-full p-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105'>
+		<div className='flex items-center grayscale hover:grayscale-0 transition-all will-change-auto p-5 relative group cursor-pointer w-full h-full overflow-hidden shadow-md bg-neutral-200 dark:bg-transparent rounded-2xl'>
+			<div className='w-full aspect-[21/10] flex items-center justify-center'>
 				<img
 					loading='lazy'
 					src={`/portfolio/images/${thumb}`}
 					alt={title}
-					className='mx-auto w-full  h-auto object-cover rounded-2xl'
+					className='mx-auto w-full h-full object-cover rounded-2xl pointer-events-none'
+					draggable={false}
 				/>
 			</div>
 

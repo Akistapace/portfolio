@@ -5,10 +5,12 @@ import SliderStacks from '@/components/SliderStacks'
 import StarField from '@/components/StarField'
 import Timeline from '@/components/Timeline'
 import { Suspense, lazy, useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const LazyHollowGlobe = lazy(() => import('@/components/Globe/HollowGlobe'))
 
 export default function HomePage() {
+	const { t } = useTranslation()
 	const globeTriggerRef = useRef<HTMLDivElement | null>(null)
 	const [shouldLoadGlobe, setShouldLoadGlobe] = useState(false)
 
@@ -44,9 +46,9 @@ export default function HomePage() {
 				<div className='stars' />
 				<div className='container mx-auto flex flex-col items-center justify-center pt-[100px] md:pt-[150px] pb-[50px] md:pb-[100px]'>
 					<h2 className='title text-black dark:text-white text-center' title='about'>
-						About Me
+						{t('home.about.title')}
 					</h2>
-					<p className='text-black dark:text-white text-center mt-4 mb-20'>Let me introduce myself</p>
+					<p className='text-black dark:text-white text-center mt-4 mb-20'>{t('home.about.subtitle')}</p>
 					<About />
 				</div>
 			</div>
@@ -54,11 +56,9 @@ export default function HomePage() {
 				<div className='stars' />
 				<div className='container mx-auto flex flex-col items-center justify-center pt-[100px] md:pt-[150px] pb-[50px] md:pb-[120px]'>
 					<h2 className='title text-black dark:text-white text-center' title='about'>
-						Experience
+						{t('home.experience.title')}
 					</h2>
-					<p className='text-black dark:text-white text-center mt-4'>
-						Here you can find my experience as a Front-end developer
-					</p>
+					<p className='text-black dark:text-white text-center mt-4'>{t('home.experience.subtitle')}</p>
 					<Timeline />
 				</div>
 			</div>
@@ -66,11 +66,10 @@ export default function HomePage() {
 				<div className='stars' />
 				<div className='flex flex-col items-center justify-center pt-[100px] md:pt-[150px] pb-[50px] md:pb-[80px]'>
 					<h2 className='container mx-auto title text-black dark:text-white text-center' title='about'>
-						Stacks
+						{t('home.stacks.title')}
 					</h2>
 					<p className='container mx-auto text-black dark:text-white text-center mt-4 mb-20'>
-						A look at my core stack as a Front-end developer, plus other tools and technologies I've picked up along the
-						way
+						{t('home.stacks.subtitle')}
 					</p>
 					<SliderStacks />
 				</div>
@@ -81,11 +80,9 @@ export default function HomePage() {
 				<div className='stars' />
 				<div className='container mx-auto flex flex-col items-center justify-center pt-[100px] md:pt-[100px] pb-[50px] md:pb-[50px] px-4'>
 					<h2 className='title text-black dark:text-white text-center ' title='about'>
-						Projects
+						{t('home.projects.title')}
 					</h2>
-					<p className='text-black dark:text-white text-center mt-4 mb-20'>
-						Here you can find some of my projects as a Front-end developer
-					</p>
+					<p className='text-black dark:text-white text-center mt-4 mb-20'>{t('home.projects.subtitle')}</p>
 					<Projects />
 				</div>
 			</div>
@@ -95,11 +92,9 @@ export default function HomePage() {
 				<div className='flex flex-col items-center justify-center overflow-hidden'>
 					<div className='container mx-auto pt-[100px] flex flex-col items-center justify-center'>
 						<h2 className='title text-center text-black dark:text-white' title='contact'>
-							Let&apos;s change the world
+							{t('home.contact.title')}
 						</h2>
-						<p className='text-center mt-4 text-black dark:text-white'>
-							Reach out to me today and let&apos;s discuss how I can help you achieve your goals.
-						</p>
+						<p className='text-center mt-4 text-black dark:text-white'>{t('home.contact.subtitle')}</p>
 
 						<div className='flex gap-4 mt-10'>
 							<a

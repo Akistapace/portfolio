@@ -2,7 +2,11 @@
 	{
 		"id": 11,
 		"title": "LoveReplay",
-		"description": "Plataforma que gera o \"Wrapped do amor\": basta subir o chat do WhatsApp do casal para receber uma retrospectiva do relacionamento com números, momentos marcantes e narrativa criada por IA.",
+		"description": {
+			"en": "Platform that generates the \"Love Wrapped\": just upload the couple's WhatsApp chat to get a relationship retrospective with numbers, memorable moments, and an AI-generated narrative.",
+			"pt-BR": "Plataforma que gera o \"Wrapped do amor\": basta subir o chat do WhatsApp do casal para receber uma retrospectiva do relacionamento com números, momentos marcantes e narrativa criada por IA.",
+			"es": "Plataforma que genera el \"Wrapped del amor\": basta con subir el chat de WhatsApp de la pareja para recibir una retrospectiva de la relación con números, momentos destacados y una narrativa creada por IA."
+		},
 		"url": "https://lovereplay-ai.com/",
 		"thumb": "lovereplayai.png",
 		"video": "",
@@ -14,7 +18,11 @@
 	{
 		"id": 1,
 		"title": "Ihsequei",
-		"description": "Plataforma de treinos online voltada para mulheres que desejam emagrecer e ganhar massa muscular sem sair de casa. Oferece programas de exercícios rápidos, planos alimentares e suporte emocional, promovendo saúde e autoestima. Inclui loja de produtos fitness e e-books gratuitos.",
+		"description": {
+			"en": "Online workout platform for women who want to lose weight and build muscle without leaving home. Offers quick exercise programs, meal plans, and emotional support, promoting health and self-esteem. Includes a fitness products store and free e-books.",
+			"pt-BR": "Plataforma de treinos online voltada para mulheres que desejam emagrecer e ganhar massa muscular sem sair de casa. Oferece programas de exercícios rápidos, planos alimentares e suporte emocional, promovendo saúde e autoestima. Inclui loja de produtos fitness e e-books gratuitos.",
+			"es": "Plataforma de entrenamientos online orientada a mujeres que desean adelgazar y ganar masa muscular sin salir de casa. Ofrece programas de ejercicios rápidos, planes de alimentación y apoyo emocional, promoviendo salud y autoestima. Incluye tienda de productos fitness y e-books gratuitos."
+		},
 		"url": "https://ihsequei.com.br/",
 		"thumb": "ihsequei.png",
 		"video": "ihsequei.mp4",
@@ -29,7 +37,11 @@
 	{
 		"id": 2,
 		"title": "Portella Cabos",
-		"description": "Empresa brasileira fundada em 1939, especializada na fabricação e fornecimento de cabos de aço e acessórios para os setores industrial, offshore e construção civil. Oferece uma ampla gama de produtos e serviços técnicos, com logística eficiente para atender clientes em todo o país.",
+		"description": {
+			"en": "Brazilian company founded in 1939, specialized in manufacturing and supplying steel cables and accessories for the industrial, offshore, and civil construction sectors. Offers a wide range of products and technical services, with efficient logistics to serve customers throughout the country.",
+			"pt-BR": "Empresa brasileira fundada em 1939, especializada na fabricação e fornecimento de cabos de aço e acessórios para os setores industrial, offshore e construção civil. Oferece uma ampla gama de produtos e serviços técnicos, com logística eficiente para atender clientes em todo o país.",
+			"es": "Empresa brasileña fundada en 1939, especializada en la fabricación y suministro de cables de acero y accesorios para los sectores industrial, offshore y construcción civil. Ofrece una amplia gama de productos y servicios técnicos, con logística eficiente para atender clientes en todo el país."
+		},
 		"url": "https://www.portellacabos.com.br/",
 		"thumb": "portellacabos.png",
 		"video": "portellacabos.mp4",
@@ -44,7 +56,11 @@
 	{
 		"id": 3,
 		"title": "Vtex Lazyloading",
-		"description": "Plugin de código aberto para carregamento preguiçoso (lazy loading) de componentes e imagens em lojas VTEX. Compatível com outras plataformas, permite otimizar o desempenho do site ao carregar elementos apenas quando necessário, melhorando a experiência do usuário.",
+		"description": {
+			"en": "Open-source plugin for lazy loading components and images on VTEX stores. Compatible with other platforms, it optimizes site performance by loading elements only when needed, improving user experience.",
+			"pt-BR": "Plugin de código aberto para carregamento preguiçoso (lazy loading) de componentes e imagens em lojas VTEX. Compatível com outras plataformas, permite otimizar o desempenho do site ao carregar elementos apenas quando necessário, melhorando a experiência do usuário.",
+			"es": "Plugin de código abierto para carga diferida (lazy loading) de componentes e imágenes en tiendas VTEX. Compatible con otras plataformas, permite optimizar el rendimiento del sitio cargando elementos solo cuando es necesario, mejorando la experiencia del usuario."
+		},
 		"url": "https://github.com/Akistapace/vtex-lazyLoading",
 		"thumb": "vtexlazyloading.png",
 		"video": "vtexlazyloading.mp4",
@@ -55,7 +71,11 @@
 	{
 		"id": 4,
 		"title": "Medidor de Anel Online",
-		"description": "Aplicativo web gratuito que permite medir o tamanho do seu anel diretamente na tela do dispositivo. Ideal para quem deseja descobrir ou confirmar o tamanho do anel usando um anel físico como referência, de forma simples e intuitiva.",
+		"description": {
+			"en": "Free web app that lets you measure your ring size directly on your device's screen. Ideal for anyone who wants to find out or confirm their ring size using a physical ring as reference, in a simple and intuitive way.",
+			"pt-BR": "Aplicativo web gratuito que permite medir o tamanho do seu anel diretamente na tela do dispositivo. Ideal para quem deseja descobrir ou confirmar o tamanho do anel usando um anel físico como referência, de forma simples e intuitiva.",
+			"es": "Aplicación web gratuita que permite medir el tamaño de tu anillo directamente en la pantalla del dispositivo. Ideal para quienes desean descubrir o confirmar el tamaño del anillo usando uno físico como referencia, de forma simple e intuitiva."
+		},
 		"url": "https://ring-gauge.vercel.app/",
 		"thumb": "medidordeanel.png",
 		"video": "medidordeanel.mp4",
@@ -66,7 +86,11 @@
 	{
 		"id": 5,
 		"title": "Vtex Easy Deploy",
-		"description": "",
+		"description": {
+			"en": "",
+			"pt-BR": "",
+			"es": ""
+		},
 		"url": "https://github.com/Akistapace/vtex-easy-deploy",
 		"thumb": "vtexeasydeploy.png",
 		"video": "",
@@ -77,7 +101,11 @@
 	{
 		"id": 6,
 		"title": "Pokedéx",
-		"description": "",
+		"description": {
+			"en": "",
+			"pt-BR": "",
+			"es": ""
+		},
 		"url": "https://akistapace.github.io/Pokedex/",
 		"thumb": "pokedex.png",
 		"video": "",
@@ -89,7 +117,11 @@
 	{
 		"id": 7,
 		"title": "Pokeball",
-		"description": "",
+		"description": {
+			"en": "",
+			"pt-BR": "",
+			"es": ""
+		},
 		"url": "https://akistapace.github.io/Pokeball/",
 		"thumb": "pokebola.png",
 		"video": "",
@@ -100,7 +132,11 @@
 	{
 		"id": 8,
 		"title": "Hire Me - Ecommerce",
-		"description": "",
+		"description": {
+			"en": "",
+			"pt-BR": "",
+			"es": ""
+		},
 		"url": "https://akistapace.github.io/frontend-challenge-pleno/",
 		"thumb": "hireme.png",
 		"video": "",
@@ -115,7 +151,11 @@
 	{
 		"id": 9,
 		"title": "Hire Me !! - Ecommerce",
-		"description": "",
+		"description": {
+			"en": "",
+			"pt-BR": "",
+			"es": ""
+		},
 		"url": "https://akistapace.github.io/site-simples-Jr/",
 		"thumb": "hiremeII.png",
 		"video": "",
@@ -130,7 +170,11 @@
 	{
 		"id": 10,
 		"title": "Bootstrap Site",
-		"description": "",
+		"description": {
+			"en": "",
+			"pt-BR": "",
+			"es": ""
+		},
 		"url": "https://akistapace.github.io/site-in-bootstrap/",
 		"thumb": "bootstrapsite.png",
 		"video": "",

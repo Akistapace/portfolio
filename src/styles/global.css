@@ -226,6 +226,29 @@ select:focus {
 	animation: floatLR 3s ease-in-out infinite alternate, floatUpDown 2.5s ease-in-out infinite alternate;
 }
 
+.projectsSwiper .swiper-slide {
+	transition: opacity 0.3s ease;
+	opacity: 0.4;
+}
+
+.projectsSwiper .swiper-slide-active {
+	opacity: 1;
+}
+
+.projectsSwiper .swiper-pagination-bullet {
+	background: #737373;
+	opacity: 0.5;
+}
+
+.projectsSwiper .swiper-pagination-bullet-active {
+	background: #000;
+	opacity: 1;
+}
+
+.dark .projectsSwiper .swiper-pagination-bullet-active {
+	background: #fff;
+}
+
 @keyframes floatLR {
 	0% {
 		transform: translateX(-10px);

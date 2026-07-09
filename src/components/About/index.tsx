@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import { DownloadResumeButton } from '@/components/Resume'
 
 const textVariants = {
 	hidden: { opacity: 0 },
@@ -20,6 +20,7 @@ const letterVariants = {
 }
 
 export const About = () => {
+	const { t } = useTranslation()
 	const [hovered, setHovered] = useState(false)
 
 	const splitText = (text: string) => {
@@ -51,9 +52,7 @@ export const About = () => {
 			<div className='flex flex-col justify-center items-start gap-5 w-full text-md'>
 				<div className='container text-black dark:text-white flex flex-col-reverse md:flex-col gap-5 text-center w-full max-w-2xl'>
 					<motion.p initial='hidden' whileInView='visible' variants={textVariants} viewport={{ amount: 0.7 }}>
-						{splitText(
-							"Hi! I'm Fernando Aquistapace, a Front-end Developer passionate about performance and user experience. I contributed to large e-commerce projects like Samsung Argentina and Brazil, focusing on optimizations and improvements."
-						)}
+						{splitText(t('about.p1'))}
 					</motion.p>
 					<motion.p
 						initial='hidden'
@@ -62,9 +61,7 @@ export const About = () => {
 						transition={{ duration: 1, delay: 0.2 }}
 						viewport={{ amount: 0.5 }}
 					>
-						{splitText(
-							'I’ve worked with CoreBiz, Vnda Ecommerce, and Nerau CX, and was part of an Argentine squad enhancing a major online store. I use JavaScript, Liquid, HTML, and CSS to build efficient interfaces.'
-						)}
+						{splitText(t('about.p2'))}
 					</motion.p>
 					<motion.p
 						initial='hidden'
@@ -73,13 +70,9 @@ export const About = () => {
 						transition={{ duration: 1, delay: 0.4 }}
 						viewport={{ amount: 0.7 }}
 					>
-						{splitText(
-							'Graduated in Systems Analysis and Development from FADERGS (2021), I transitioned from administration to tech — where I found my passion for creating meaningful digital experiences.'
-						)}
+						{splitText(t('about.p3'))}
 					</motion.p>
 				</div>
-
-				<DownloadResumeButton />
 			</div>
 		</div>
 	)

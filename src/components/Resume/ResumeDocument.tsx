@@ -1,4 +1,6 @@
-import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer'
+import { Document, Link, Page, Path, StyleSheet, Svg, Text, View } from '@react-pdf/renderer'
+
+import i18n from '@/i18n'
 
 const styles = StyleSheet.create({
 	page: {
@@ -11,6 +13,9 @@ const styles = StyleSheet.create({
 		color: '#ffffff',
 		paddingVertical: 28,
 		paddingHorizontal: 32,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'flex-start',
 	},
 	name: {
 		fontSize: 26,
@@ -21,13 +26,22 @@ const styles = StyleSheet.create({
 		fontSize: 11,
 		color: '#d9d3cd',
 	},
-	contactRow: {
-		flexDirection: 'row',
-		justifyContent: 'flex-end',
-		gap: 16,
-		marginTop: -34,
-	},
 	contactItem: {
+		fontSize: 9,
+		color: '#ffffff',
+		marginBottom: 4,
+	},
+	socialRow: {
+		flexDirection: 'row',
+		gap: 12,
+		marginTop: 2,
+	},
+	socialLink: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 4,
+	},
+	socialText: {
 		fontSize: 9,
 		color: '#ffffff',
 	},
@@ -36,7 +50,7 @@ const styles = StyleSheet.create({
 		paddingTop: 24,
 		paddingHorizontal: 32,
 		paddingBottom: 32,
-		gap: 24,
+		gap: 20,
 	},
 	sidebar: {
 		width: '32%',
@@ -44,12 +58,12 @@ const styles = StyleSheet.create({
 	},
 	main: {
 		width: '68%',
-		gap: 16,
+		gap: 10,
 	},
 	sectionTitle: {
 		fontSize: 13,
 		fontFamily: 'Helvetica-Bold',
-		marginBottom: 8,
+		marginBottom: 6,
 		color: '#1a1a1a',
 	},
 	divider: {
@@ -61,14 +75,14 @@ const styles = StyleSheet.create({
 	skillsWrap: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
-		gap: 6,
+		gap: 4,
 	},
 	skillPill: {
 		backgroundColor: '#262220',
 		color: '#ffffff',
-		fontSize: 8,
-		paddingVertical: 4,
-		paddingHorizontal: 8,
+		fontSize: 9,
+		paddingVertical: 5,
+		paddingHorizontal: 10,
 		borderRadius: 10,
 	},
 	langItem: {
@@ -78,17 +92,22 @@ const styles = StyleSheet.create({
 	experienceItem: {
 		marginBottom: 12,
 	},
+	experienceHeader: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'flex-start',
+	},
 	experienceRole: {
 		fontSize: 11,
 		fontFamily: 'Helvetica-Bold',
 	},
 	experiencePeriod: {
 		fontSize: 9,
-		color: '#5c5c5c',
 	},
 	experienceSubtitle: {
 		fontSize: 9.5,
 		fontFamily: 'Helvetica-Bold',
+		color: '#5c5c5c',
 		marginTop: 2,
 		marginBottom: 4,
 	},
@@ -99,111 +118,120 @@ const styles = StyleSheet.create({
 	},
 })
 
-const skills = [
+const mainStack = [
+	'Typescript',
 	'Javascript',
 	'React',
+	'Nextjs',
 	'Node',
-	'Web Performance',
-	'Typescript',
-	'Jest & Testing Library',
+	'Tailwind',
+	'CSS',
 	'Graphql',
-	'CSS-SASS-SCSS',
-	'WordPress',
+	'Jest',
+	'Playwright',
+	'Supabase',
 	'Git',
-	'Vue',
-	'Shopify',
-	'VTEX',
-	'Liquid',
 ]
 
-const languages = [
-	{ label: 'Português', level: 'Nativo' },
-	{ label: 'Inglês', level: 'Intermediário' },
-	{ label: 'Espanhol', level: 'Intermediário' },
-]
+const skills = ['VTEX', 'Web Performance', 'Shopify', 'WordPress', 'Liquid', 'Clean Code', 'AI Engineering']
 
-const experiences = [
-	{
-		role: 'Senior Frontend Developer, Ilegra',
-		period: 'Atualmente',
-		subtitle: 'Criação de plataformas na SLC Agrícola.',
-		text: 'Atualmente, trabalho em uma empresa agrícola, onde ajudo a desenvolver plataformas de gerenciamento para fazendas e funcionários. Criamos ferramentas para monitoramento de safras, rastreamento de tratores e operações agrícolas em geral. Concentro-me no desenvolvimento front-end, trabalhando em conjunto com a equipe para criar interfaces eficientes e fáceis de usar.',
-	},
-	{
-		role: 'Senior Frontend Developer, Corebiz',
-		period: '2022 - 2023',
-		subtitle: 'Líder Técnico em Web Performance, Samsung',
-		text: 'Como líder de Performance nas lojas da Samsung Brasil, dediquei-me a melhorar o desempenho da plataforma e a oferecer uma ótima experiência ao cliente. Minhas responsabilidades vão desde a identificação e resolução de gargalos técnicos até a implementação de estratégias para otimizar a eficiência do comércio eletrônico e impulsionar as conversões. Anteriormente, colaborei com iniciativas estratégicas de comércio eletrônico no Hub da Argentina por 11 meses, demonstrando minha capacidade de prosperar em ambientes multiculturais e contribuir para o sucesso do time. Minha liderança é caracterizada pela solução avançada de problemas, otimização contínua do desempenho e foco na formação de equipes de alto desempenho.',
-	},
-	{
-		role: 'Junior Frontend Developer, Vnda Ecommerce',
-		period: '2021 - 2022',
-		subtitle: 'Criação e otimização de ecommerces de alto desempenho',
-		text: 'Desenvolvi novas lojas e recursos, bem como implementei melhorias nos sites existentes na plataforma Vnda, utilizando habilidades avançadas em Liquid, Javascript, HTML e CSS. Garanti que os projetos estivessem de acordo com as especificações do cliente e atendessem aos padrões de qualidade da empresa. Também colaborei com a equipe para solucionar problemas e otimizar o desempenho dos sites.',
-	},
-	{
-		role: 'Junior Frontend Developer, Nerau CX',
-		period: '2020 - 2021',
-		subtitle: 'Frontend Development and Maintenance of E-commerce Platforms',
-		text: 'Atuei corrigindo bugs críticos e implementando soluções otimizadas para melhorar o desempenho e a usabilidade em plataformas diversas de ecommerce.',
-	},
-]
+type ResumeLanguage = { label: string; level: string }
+type ResumeExperience = { role: string; period: string; subtitle: string; text: string }
 
-export const ResumeDocument = () => (
-	<Document title='Fernando Aquistapace - CV' author='Fernando Aquistapace'>
-		<Page size='A4' style={styles.page}>
-			<View style={styles.header}>
-				<Text style={styles.name}>Fernando Aquistapace</Text>
-				<Text style={styles.title}>Frontend | VTEX | Web Performance</Text>
-				<View style={styles.contactRow}>
-					<Text style={styles.contactItem}>+55 51 985654436</Text>
-					<Text style={styles.contactItem}>fernando.akistapace@gmail.com</Text>
-					<Text style={styles.contactItem}>Canoas / RS-Brasil</Text>
-				</View>
-			</View>
+export const ResumeDocument = () => {
+	const t = i18n.t
 
-			<View style={styles.body}>
-				<View style={styles.sidebar}>
+	const languages = t('resume.doc.languages', { returnObjects: true }) as ResumeLanguage[]
+	const experiences = t('resume.doc.experiences', { returnObjects: true }) as ResumeExperience[]
+
+	return (
+		<Document title='Fernando Aquistapace - CV' author='Fernando Aquistapace'>
+			<Page size='A4' style={styles.page}>
+				<View style={styles.header}>
 					<View>
-						<Text style={styles.sectionTitle}>Formação</Text>
-						<Text style={styles.experienceText}>Análise e Desenvolvimento de Sistemas | 2018-2021</Text>
+						<Text style={styles.name}>Fernando Aquistapace</Text>
+						<Text style={styles.title}>{t('resume.doc.title')}</Text>
 					</View>
-
 					<View>
-						<Text style={styles.sectionTitle}>Conhecimentos</Text>
-						<View style={styles.skillsWrap}>
-							{skills.map(skill => (
-								<Text key={skill} style={styles.skillPill}>
-									{skill}
+						<Text style={styles.contactItem}>fernando.akistapace@gmail.com</Text>
+						<View style={styles.socialRow}>
+							<Link src='https://www.linkedin.com/in/fernando-aquistapace' style={styles.socialLink}>
+								<Svg width={10} height={10} viewBox='0 0 24 24'>
+									<Path
+										fill='#ffffff'
+										d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z'
+									/>
+								</Svg>
+							</Link>
+							<Link src='https://github.com/Akistapace' style={styles.socialLink}>
+								<Svg width={10} height={10} viewBox='0 0 24 24'>
+									<Path
+										fill='#ffffff'
+										d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'
+									/>
+								</Svg>
+							</Link>
+						</View>
+					</View>
+				</View>
+
+				<View style={styles.body}>
+					<View style={styles.sidebar}>
+						<View>
+							<Text style={styles.sectionTitle}>{t('resume.doc.sections.education')}</Text>
+							<Text style={styles.experienceText}>{t('resume.doc.education')}</Text>
+						</View>
+
+						<View>
+							<Text style={styles.sectionTitle}>{t('resume.doc.sections.mainStack')}</Text>
+							<View style={styles.skillsWrap}>
+								{mainStack.map(skill => (
+									<Text key={skill} style={styles.skillPill}>
+										{skill}
+									</Text>
+								))}
+							</View>
+							<Text style={{ ...styles.experienceText, marginTop: 8, color: '#5c5c5c' }}>
+								{t('resume.doc.otherSkills')}
+							</Text>
+						</View>
+
+						<View>
+							<Text style={styles.sectionTitle}>{t('resume.doc.sections.skills')}</Text>
+							<View style={styles.skillsWrap}>
+								{skills.map(skill => (
+									<Text key={skill} style={styles.skillPill}>
+										{skill}
+									</Text>
+								))}
+							</View>
+						</View>
+
+						<View>
+							<Text style={styles.sectionTitle}>{t('resume.doc.sections.languages')}</Text>
+							{languages.map(lang => (
+								<Text key={lang.label} style={styles.langItem}>
+									• {lang.label}: {lang.level}
 								</Text>
 							))}
 						</View>
-						<Text style={{ ...styles.experienceText, marginTop: 8, color: '#5c5c5c' }}>Entre outros</Text>
 					</View>
 
-					<View>
-						<Text style={styles.sectionTitle}>Idiomas</Text>
-						{languages.map(lang => (
-							<Text key={lang.label} style={styles.langItem}>
-								• {lang.label}: {lang.level}
-							</Text>
+					<View style={styles.main}>
+						<Text style={styles.sectionTitle}>{t('resume.doc.sections.experience')}</Text>
+						{experiences.map(exp => (
+							<View key={exp.role} style={styles.experienceItem}>
+								<View style={styles.experienceHeader}>
+									<Text style={styles.experienceRole}>{exp.role}</Text>
+									<Text style={styles.experiencePeriod}>{exp.period}</Text>
+								</View>
+								<Text style={styles.experienceSubtitle}>{exp.subtitle}</Text>
+								<Text style={styles.experienceText}>{exp.text}</Text>
+							</View>
 						))}
 					</View>
 				</View>
-
-				<View style={styles.main}>
-					<Text style={styles.sectionTitle}>Experiências</Text>
-					{experiences.map(exp => (
-						<View key={exp.role} style={styles.experienceItem}>
-							<Text style={styles.experienceRole}>
-								{exp.role} <Text style={styles.experiencePeriod}>({exp.period})</Text>
-							</Text>
-							<Text style={styles.experienceSubtitle}>{exp.subtitle}</Text>
-							<Text style={styles.experienceText}>{exp.text}</Text>
-						</View>
-					))}
-				</View>
-			</View>
-		</Page>
-	</Document>
-)
+			</Page>
+		</Document>
+	)
+}

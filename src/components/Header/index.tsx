@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { DownloadResumeButton } from '@/components/Resume'
+import { LanguageSwitcher } from '../LanguageSwitcher'
 import { ModeToggle } from '../ToggleTheme'
 
 export const Header = () => {
+	const { t } = useTranslation()
 	const headerRef = useRef<HTMLElement | null>(null)
 	const [isHeaderVisible, setIsHeaderVisible] = useState(true)
 
@@ -43,7 +46,7 @@ export const Header = () => {
 									onClick={() => scrollToSection('about')}
 									className='text-sm text-white dark:text-black'
 								>
-									About
+									{t('header.about')}
 								</button>
 							</li>
 							<li className='item-menu'>
@@ -52,7 +55,7 @@ export const Header = () => {
 									onClick={() => scrollToSection('experience')}
 									className='text-sm text-white dark:text-black'
 								>
-									Experience
+									{t('header.experience')}
 								</button>
 							</li>
 							<li className='item-menu'>
@@ -61,7 +64,7 @@ export const Header = () => {
 									onClick={() => scrollToSection('stacks')}
 									className='text-sm text-white dark:text-black'
 								>
-									Stacks
+									{t('header.stacks')}
 								</button>
 							</li>
 							<li className='item-menu'>
@@ -70,7 +73,7 @@ export const Header = () => {
 									onClick={() => scrollToSection('projects')}
 									className='text-sm text-white dark:text-black'
 								>
-									Projects
+									{t('header.projects')}
 								</button>
 							</li>
 							<li className='item-menu'>
@@ -79,11 +82,18 @@ export const Header = () => {
 									onClick={() => scrollToSection('contact')}
 									className='text-sm text-white dark:text-black'
 								>
-									Contact
+									{t('header.contact')}
 								</button>
 							</li>
 							<li className='item-menu'>
-								<DownloadResumeButton size='sm' className='shadow-md' />
+								<DownloadResumeButton
+									size='sm'
+									className='shadow-md border-0 bg-white text-black dark:bg-black dark:text-white'
+									variant={'outline'}
+								/>
+							</li>
+							<li>
+								<LanguageSwitcher />
 							</li>
 							<li>
 								<ModeToggle />

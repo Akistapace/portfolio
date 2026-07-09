@@ -128,8 +128,8 @@ const Slider = ({ reverse }: { reverse?: boolean }) => {
 						<div className='h-[150px] md:h-[200px] flex items-center justify-center mx-2 grow-0 shrink-0 basis-auto rounded-md bg-stone-200 dark:bg-stone-800 aspect-square p-4 grayscale hover:grayscale-0'>
 							{loadedImages[tech] ? (
 								<img src={loadedImages[tech]} alt={tech} className='h-[70px] md:h-[100px] object-contain w-auto' />
-							) : (
-								<StackIcon name={tech} className='h-[30px] md:h-[40px] object-contain w-auto' />
+							) : tech in IconImports ? null : (
+								<StackIcon name={tech} className='h-[70px] md:h-[100px] object-contain w-auto' />
 							)}
 						</div>
 					</TooltipTrigger>

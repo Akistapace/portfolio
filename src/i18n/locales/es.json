@@ -1,0 +1,100 @@
+{
+	"header": {
+		"about": "Sobre mí",
+		"experience": "Experiencia",
+		"stacks": "Tecnologías",
+		"projects": "Proyectos",
+		"contact": "Contacto"
+	},
+	"resume": {
+		"download": "Descargar CV",
+		"generating": "Generando PDF...",
+		"aria": "Descargar CV",
+		"doc": {
+			"title": "Frontend Senior | Fullstack | VTEX | Rendimiento Web",
+			"sections": {
+				"education": "Formación",
+				"skills": "Conocimientos",
+				"mainStack": "Main Stack",
+				"languages": "Idiomas",
+				"experience": "Experiencia"
+			},
+			"education": "Análisis y Desarrollo de Sistemas | (2018-2021)",
+			"otherSkills": "Entre otros",
+			"languages": [
+				{ "label": "Portugués", "level": "Nativo" },
+				{ "label": "Inglés", "level": "Intermedio" },
+				{ "label": "Español", "level": "Intermedio" }
+			],
+			"experiences": [
+				{
+					"role": "Senior Frontend / Fullstack Developer, Ilegra",
+					"period": "Actualmente",
+					"subtitle": "Proyecto Internacional - Elite Business (SaaS de Business Exchange)",
+					"text": "Participación en un proyecto internacional como Senior Frontend / Fullstack Developer, desarrollando y evolucionando una plataforma SaaS de Business Exchange. Participando en la implementación de funcionalidades end-to-end, incluyendo backend (Node.js), frontend (React/Next.js) e integraciones con APIs, además de nuevas soluciones para el producto, contribuyendo a la escalabilidad, usabilidad y evolución continua de la plataforma."
+				},
+				{
+					"role": "Senior Frontend Developer, Ilegra",
+					"period": "2025 - 2026",
+					"subtitle": "Creación de plataformas en SLC Agrícola.",
+					"text": "Trabajé en una empresa agrícola, donde ayudé a desarrollar plataformas de gestión para fincas y empleados. Creamos herramientas para monitoreo de cultivos, rastreo de tractores y operaciones agrícolas en general. Me concentré en el desarrollo front-end, trabajando junto al equipo para crear interfaces eficientes y fáciles de usar."
+				},
+				{
+					"role": "Senior Frontend Developer, Corebiz",
+					"period": "2022 - 2023",
+					"subtitle": "Líder Técnico en Rendimiento Web, Samsung",
+					"text": "Como líder de Performance en las tiendas de Samsung Brasil, me dediqué a mejorar el rendimiento de la plataforma y ofrecer una excelente experiencia al cliente. Mis responsabilidades abarcaron desde la identificación y resolución de cuellos de botella técnicos hasta la implementación de estrategias para optimizar la eficiencia del comercio electrónico e impulsar las conversiones. Anteriormente, colaboré en iniciativas estratégicas de comercio electrónico en el Hub de Argentina durante 11 meses, demostrando mi capacidad para prosperar en entornos multiculturales y contribuir al éxito del equipo. Mi liderazgo se caracteriza por la resolución avanzada de problemas, la optimización continua del rendimiento y el enfoque en la formación de equipos de alto desempeño."
+				},
+				{
+					"role": "Junior Frontend Developer, Vnda Ecommerce",
+					"period": "2021 - 2022",
+					"subtitle": "Creación y optimización de ecommerces de alto rendimiento",
+					"text": "Desarrollé nuevas tiendas y funcionalidades, además de implementar mejoras en los sitios existentes en la plataforma Vnda, utilizando habilidades avanzadas en Liquid, JavaScript, HTML y CSS. Aseguré que los proyectos cumplieran con las especificaciones del cliente y los estándares de calidad de la empresa. También colaboré con el equipo para resolver problemas y optimizar el rendimiento de los sitios."
+				},
+				{
+					"role": "Junior Frontend Developer, Nerau CX",
+					"period": "2020 - 2021",
+					"subtitle": "Desarrollo y Mantenimiento Frontend de Plataformas de E-commerce",
+					"text": "Corregí errores críticos e implementé soluciones optimizadas para mejorar el rendimiento y la usabilidad en diversas plataformas de ecommerce."
+				}
+			]
+		}
+	},
+	"home": {
+		"about": {
+			"title": "Sobre Mí",
+			"subtitle": "Déjame presentarme"
+		},
+		"experience": {
+			"title": "Experiencia",
+			"subtitle": "Aquí puedes encontrar mi experiencia como desarrollador Front-end"
+		},
+		"stacks": {
+			"title": "Tecnologías",
+			"subtitle": "Un vistazo a mi stack principal como desarrollador Front-end, además de otras herramientas y tecnologías que fui aprendiendo en el camino"
+		},
+		"projects": {
+			"title": "Proyectos",
+			"subtitle": "Aquí puedes encontrar algunos de mis proyectos como desarrollador Front-end"
+		},
+		"contact": {
+			"title": "Cambiemos el mundo",
+			"subtitle": "Contáctame hoy y hablemos sobre cómo puedo ayudarte a alcanzar tus objetivos."
+		}
+	},
+	"about": {
+		"p1": "¡Hola! Soy Fernando Aquistapace, desarrollador Front-end apasionado por el rendimiento y la experiencia de usuario. Contribuí en grandes proyectos de e-commerce como Samsung Argentina y Brasil, enfocándome en optimizaciones y mejoras.",
+		"p2": "Trabajé en CoreBiz, Vnda Ecommerce y Nerau CX, y formé parte de un equipo argentino mejorando una gran tienda online. Uso JavaScript, Liquid, HTML y CSS para construir interfaces eficientes.",
+		"p3": "Graduado en Análisis y Desarrollo de Sistemas por FADERGS (2021), pasé de la administración a la tecnología — donde encontré mi pasión por crear experiencias digitales significativas."
+	},
+	"projects": {
+		"prev": "Proyecto anterior",
+		"next": "Proyecto siguiente"
+	},
+	"notFound": {
+		"title": "Bienvenido a la Página de Inicio"
+	},
+	"language": {
+		"select": "Seleccionar idioma"
+	}
+}

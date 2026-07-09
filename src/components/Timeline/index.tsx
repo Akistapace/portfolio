@@ -1,8 +1,12 @@
 import timeline from '@/contents/timeline.json'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const Timeline = () => {
+	const { i18n } = useTranslation()
+	const lang = i18n.language as keyof (typeof timeline)[number]['description']
+
 	return (
 		<div className='flex items-center justify-center'>
 			<div className='relative mx-auto max-w-6xl w-full py-10 px-4'>
@@ -46,13 +50,13 @@ const Timeline = () => {
 								>
 									<div className='md:p-6 md:mx-6 rounded-2xl w-full text-center sm:text-left shadow-md '>
 										<h3 className='text-xl font-semibold text-black dark:text-white mb-4'>{event.title}</h3>
-										<p className='text-black dark:text-gray-300'>{event.description}</p>
+										<p className='text-black dark:text-gray-300'>{event.description[lang] ?? event.description.en}</p>
 									</div>
 								</motion.div>
 
 								{/* Data centralizada */}
 								<div className='z-10 w-24 h-10 rounded-full font-bold text-sm flex items-center justify-center absolute left-1/2 transform -translate-x-1/2  bg-gray-900 dark:bg-white text-white dark:text-gray-800 md:top-0 -top-[60px] shadow'>
-									{event.date}
+									{event.date[lang] ?? event.date.en}
 								</div>
 							</div>
 						)
