@@ -13,6 +13,12 @@
 		"contact": "Get in touch",
 		"scroll": "Explore"
 	},
+	"game": {
+		"start": "Ship mode",
+		"exit": "Exit",
+		"score": "Destroyed",
+		"hint": "← → turn · ↑ thrust · space shoot · R restore · ESC exit"
+	},
 	"resume": {
 		"download": "Download Resume",
 		"generating": "Generating PDF...",

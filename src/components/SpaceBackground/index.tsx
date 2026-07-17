@@ -123,100 +123,70 @@ const Nebulas = ({ isDark, texture }: { isDark: boolean; texture: THREE.Texture 
 	)
 }
 
-type ShapeConfig = {
-	/** x fixo, deslocamento y em torno da âncora, profundidade z */
-	position: [number, number, number]
-	rotationSpeed: [number, number]
-	floatPhase: number
-	/** Fração do scroll total da página (0 = topo, 1 = fim) onde a forma fica centralizada */
-	anchor: number
-	/** Quantos "mundos" a forma percorre por viewport rolado */
-	travel: number
-}
-
-const SHAPES: ShapeConfig[] = [
-	// Hero: só uma forma pequena e distante
-	{ position: [480, 60, -600], rotationSpeed: [0.06, 0.1], floatPhase: 0, anchor: 0.04, travel: 500 },
-	{ position: [-540, 0, 100], rotationSpeed: [0.1, 0.16], floatPhase: 1.4, anchor: 0.2, travel: 750 },
-	{ position: [560, -40, -150], rotationSpeed: [0.14, 0.08], floatPhase: 2.6, anchor: 0.36, travel: 800 },
-	{ position: [-460, 40, -350], rotationSpeed: [0.06, 0.12], floatPhase: 4.2, anchor: 0.52, travel: 650 },
-	{ position: [520, 0, 0], rotationSpeed: [0.12, 0.05], floatPhase: 5.6, anchor: 0.7, travel: 850 },
-	{ position: [-500, -60, -250], rotationSpeed: [0.09, 0.14], floatPhase: 7.1, anchor: 0.88, travel: 700 },
-]
-
-const FloatingShape = ({
-	config,
-	isDark,
-	pointer,
-	scroll,
-	children,
-}: SceneProps & { config: ShapeConfig; children: React.ReactNode }) => {
-	const meshRef = useRef<THREE.Mesh>(null)
-	const materialRef = useRef<THREE.MeshBasicMaterial>(null)
-	const maxOpacity = isDark ? 0.22 : 0.3
+const Spaceship = ({ isDark, pointer, scroll }: SceneProps) => {
+	const groupRef = useRef<THREE.Group>(null)
+	const prev = useRef({ x: 0, y: 0, heading: Math.PI / 2 })
 
 	useFrame(({ clock }, delta) => {
-		const mesh = meshRef.current
-		if (!mesh) return
+		const group = groupRef.current
+		if (!group) return
 		const t = clock.elapsedTime
 
-		// Posição relativa à âncora: -1 = um viewport antes, 0 = centrada, +1 = um depois
+		// Trajetória costurada pela página: serpenteia na horizontal e ondula na
+		// vertical conforme o progresso do scroll, com uma flutuação ambiente
 		const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
-		const rel = (scroll.current - config.anchor * maxScroll) / window.innerHeight
+		const progress = scroll.current / maxScroll
+		const targetX = Math.sin(progress * Math.PI * 3 + 0.4) * 520 + pointer.current.x * 20
+		const targetY = Math.cos(progress * Math.PI * 2 + 0.8) * 250 + Math.sin(t * 0.5) * 30
 
-		// Longe da âncora a forma fica invisível e nem precisa animar
-		const fade = 1 - Math.min(1, Math.abs(rel) / 1.2)
-		if (materialRef.current) materialRef.current.opacity = maxOpacity * fade * fade
-		mesh.visible = fade > 0
-		if (!mesh.visible) return
+		const ease = Math.min(1, delta * 1.5)
+		group.position.x += (targetX - group.position.x) * ease
+		group.position.y += (targetY - group.position.y) * ease
+		group.position.z = -180
 
-		// Rotação própria contínua + inclinação suave em direção ao ponteiro
-		mesh.rotation.x += delta * config.rotationSpeed[0] + (pointer.current.y * 0.3 - mesh.rotation.x) * delta * 0.15
-		mesh.rotation.y += delta * config.rotationSpeed[1] + (pointer.current.x * 0.3 - mesh.rotation.y) * delta * 0.15
-
-		// Surge por baixo, cruza o viewport e sai por cima conforme o scroll
-		mesh.position.x = config.position[0] + Math.sin(t * 0.3 + config.floatPhase) * 25
-		mesh.position.y = config.position[1] + Math.cos(t * 0.25 + config.floatPhase) * 20 + rel * config.travel
+		// Aponta o nariz para a direção do movimento (cone aponta +y)
+		const vx = group.position.x - prev.current.x
+		const vy = group.position.y - prev.current.y
+		if (Math.abs(vx) + Math.abs(vy) > 0.05) {
+			const heading = Math.atan2(vy, vx)
+			let diff = heading - prev.current.heading
+			while (diff > Math.PI) diff -= Math.PI * 2
+			while (diff < -Math.PI) diff += Math.PI * 2
+			prev.current.heading += diff * Math.min(1, delta * 3)
+		}
+		group.rotation.z = prev.current.heading - Math.PI / 2
+		// Leve rolagem no eixo longitudinal para dar vida
+		group.rotation.y = Math.sin(t * 0.7) * 0.25
+		prev.current.x = group.position.x
+		prev.current.y = group.position.y
 	})
 
-	return (
-		<mesh ref={meshRef} position={config.position}>
-			{children}
-			<meshBasicMaterial
-				ref={materialRef}
-				wireframe
-				color={isDark ? '#ffffff' : '#1a1a1a'}
-				transparent
-				opacity={0}
-				depthWrite={false}
-			/>
-		</mesh>
-	)
-}
+	const color = isDark ? '#ffffff' : '#1a1a1a'
+	const opacity = isDark ? 0.5 : 0.55
+	const scale = isMobile ? 0.6 : 1
 
-const FloatingShapes = (props: SceneProps) => {
-	if (isMobile) return null
 	return (
-		<>
-			<FloatingShape {...props} config={SHAPES[0]}>
-				<tetrahedronGeometry args={[70, 0]} />
-			</FloatingShape>
-			<FloatingShape {...props} config={SHAPES[1]}>
-				<icosahedronGeometry args={[95, 0]} />
-			</FloatingShape>
-			<FloatingShape {...props} config={SHAPES[2]}>
-				<torusKnotGeometry args={[60, 18, 64, 8]} />
-			</FloatingShape>
-			<FloatingShape {...props} config={SHAPES[3]}>
-				<octahedronGeometry args={[80, 0]} />
-			</FloatingShape>
-			<FloatingShape {...props} config={SHAPES[4]}>
-				<dodecahedronGeometry args={[70, 0]} />
-			</FloatingShape>
-			<FloatingShape {...props} config={SHAPES[5]}>
-				<torusGeometry args={[75, 22, 12, 24]} />
-			</FloatingShape>
-		</>
+		<group ref={groupRef} scale={scale}>
+			{/* Fuselagem */}
+			<mesh>
+				<coneGeometry args={[22, 78, 6]} />
+				<meshBasicMaterial wireframe color={color} transparent opacity={opacity} depthWrite={false} />
+			</mesh>
+			{/* Asas */}
+			<mesh position={[-30, -26, 0]} rotation={[0, 0, 0.5]}>
+				<boxGeometry args={[42, 4, 14]} />
+				<meshBasicMaterial wireframe color={color} transparent opacity={opacity * 0.8} depthWrite={false} />
+			</mesh>
+			<mesh position={[30, -26, 0]} rotation={[0, 0, -0.5]}>
+				<boxGeometry args={[42, 4, 14]} />
+				<meshBasicMaterial wireframe color={color} transparent opacity={opacity * 0.8} depthWrite={false} />
+			</mesh>
+			{/* Motor */}
+			<mesh position={[0, -44, 0]} rotation={[Math.PI / 2, 0, 0]}>
+				<torusGeometry args={[12, 4, 4, 8]} />
+				<meshBasicMaterial wireframe color={color} transparent opacity={opacity * 0.9} depthWrite={false} />
+			</mesh>
+		</group>
 	)
 }
 
@@ -249,7 +219,7 @@ const Scene = ({ isDark, pointer, scroll }: SceneProps) => {
 				/>
 			))}
 			<Nebulas isDark={isDark} texture={texture} />
-			<FloatingShapes isDark={isDark} pointer={pointer} scroll={scroll} />
+			<Spaceship isDark={isDark} pointer={pointer} scroll={scroll} />
 			<CameraRig pointer={pointer} scroll={scroll} />
 		</>
 	)

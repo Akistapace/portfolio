@@ -13,6 +13,12 @@
 		"contact": "Fale comigo",
 		"scroll": "Explorar"
 	},
+	"game": {
+		"start": "Modo nave",
+		"exit": "Sair",
+		"score": "Destruídos",
+		"hint": "← → girar · ↑ acelerar · espaço atirar · R restaurar · ESC sair"
+	},
 	"resume": {
 		"download": "Baixar Currículo",
 		"generating": "Gerando PDF...",

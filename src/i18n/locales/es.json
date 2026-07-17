@@ -13,6 +13,12 @@
 		"contact": "Contáctame",
 		"scroll": "Explorar"
 	},
+	"game": {
+		"start": "Modo nave",
+		"exit": "Salir",
+		"score": "Destruidos",
+		"hint": "← → girar · ↑ acelerar · espacio disparar · R restaurar · ESC salir"
+	},
 	"resume": {
 		"download": "Descargar CV",
 		"generating": "Generando PDF...",

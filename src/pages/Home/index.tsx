@@ -1,4 +1,5 @@
 import { About } from '@/components/About'
+import AsteroidGame from '@/components/AsteroidGame'
 import Hero from '@/components/Hero'
 import ParallaxRails from '@/components/ParallaxRails'
 import { Projects } from '@/components/Projects'
@@ -69,6 +70,7 @@ export default function HomePage() {
 		<div className='mx-auto w-full relative flex flex-col items-center justify-center overflow-hidden'>
 			<SpaceBackground />
 			<ParallaxRails />
+			<AsteroidGame />
 
 			<div className='relative z-10 w-full flex flex-col items-center'>
 				<Hero />
