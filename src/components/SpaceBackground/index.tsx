@@ -1,3 +1,4 @@
+import { shipState, useGameStore } from '@/store/useGameStore'
 import { useTheme } from '@/theme/theme-provider'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -132,6 +133,38 @@ const Spaceship = ({ isDark, pointer, scroll }: SceneProps) => {
 		if (!group) return
 		const t = clock.elapsedTime
 
+		// Modo jogo: a nave 3D vira o player, seguindo a física do AsteroidGame.
+		// Converte a posição em pixels para o plano z=0 do mundo.
+		if (useGameStore.getState().active) {
+			const aspect = window.innerWidth / window.innerHeight
+			const halfHeight = Math.tan((60 * Math.PI) / 360) * CAMERA_Z
+			const worldX = (shipState.x / window.innerWidth - 0.5) * 2 * halfHeight * aspect
+			const worldY = (0.5 - shipState.y / window.innerHeight) * 2 * halfHeight
+
+			// Wrap de borda dá salto grande: teleporta em vez de "voar" pela tela
+			if (Math.abs(worldX - group.position.x) > halfHeight || Math.abs(worldY - group.position.y) > halfHeight) {
+				group.position.x = worldX
+				group.position.y = worldY
+			} else {
+				const chase = Math.min(1, delta * 14)
+				group.position.x += (worldX - group.position.x) * chase
+				group.position.y += (worldY - group.position.y) * chase
+			}
+			group.position.z = 0
+
+			// Ângulo 2D (y de tela para baixo) vira heading no mundo (y para cima)
+			const targetHeading = -shipState.angle
+			let diff = targetHeading - prev.current.heading
+			while (diff > Math.PI) diff -= Math.PI * 2
+			while (diff < -Math.PI) diff += Math.PI * 2
+			prev.current.heading += diff * Math.min(1, delta * 12)
+			group.rotation.z = prev.current.heading - Math.PI / 2
+			group.rotation.y = 0
+			prev.current.x = group.position.x
+			prev.current.y = group.position.y
+			return
+		}
+
 		// Trajetória costurada pela página: serpenteia na horizontal e ondula na
 		// vertical conforme o progresso do scroll, com uma flutuação ambiente
 		const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
@@ -194,10 +227,16 @@ const CameraRig = ({ pointer, scroll }: Pick<SceneProps, 'pointer' | 'scroll'>) 
 	const { camera, scene } = useThree()
 
 	useFrame(() => {
-		camera.position.x += (pointer.current.x * 90 - camera.position.x) * 0.03
-		camera.position.y += (-pointer.current.y * 60 - camera.position.y) * 0.03
+		// No jogo a câmera centraliza e a cena desgira, para o mapeamento
+		// tela→mundo da nave ficar exato
+		const gameActive = useGameStore.getState().active
+		const targetX = gameActive ? 0 : pointer.current.x * 90
+		const targetY = gameActive ? 0 : -pointer.current.y * 60
+		camera.position.x += (targetX - camera.position.x) * 0.03
+		camera.position.y += (targetY - camera.position.y) * 0.03
 		camera.lookAt(0, 0, 0)
-		scene.rotation.z = scroll.current * 0.00003
+		const targetRotation = gameActive ? 0 : scroll.current * 0.00003
+		scene.rotation.z += (targetRotation - scene.rotation.z) * 0.05
 	})
 
 	return null
@@ -227,6 +266,7 @@ const Scene = ({ isDark, pointer, scroll }: SceneProps) => {
 
 const SpaceBackground: React.FC = () => {
 	const { isDark } = useTheme()
+	const gameActive = useGameStore(state => state.active)
 	const pointer = useRef({ x: 0, y: 0 })
 	const scroll = useRef(0)
 	const [frameloop, setFrameloop] = useState<'always' | 'never'>('always')
@@ -262,7 +302,9 @@ const SpaceBackground: React.FC = () => {
 	return (
 		<div
 			aria-hidden='true'
-			className='fixed inset-0 z-0 pointer-events-none bg-[#f5f5f3] dark:bg-[#050505] transition-colors duration-500'
+			className={`fixed inset-0 pointer-events-none bg-[#f5f5f3] dark:bg-[#050505] transition-colors duration-500 ${
+				gameActive ? 'z-[75] !bg-transparent' : 'z-0'
+			}`}
 		>
 			<Canvas
 				frameloop={frameloop}

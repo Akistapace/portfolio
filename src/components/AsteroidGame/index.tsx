@@ -1,3 +1,4 @@
+import { shipState, useGameStore } from '@/store/useGameStore'
 import { useTheme } from '@/theme/theme-provider'
 import { Gamepad2, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
@@ -23,7 +24,8 @@ const SHOOT_COOLDOWN_MS = 180
 export const AsteroidGame = () => {
 	const { t } = useTranslation()
 	const { isDark } = useTheme()
-	const [active, setActive] = useState(false)
+	const active = useGameStore(state => state.active)
+	const setActive = useGameStore(state => state.setActive)
 	const [score, setScore] = useState(0)
 	const canvasRef = useRef<HTMLCanvasElement | null>(null)
 	const overlayRef = useRef<HTMLDivElement | null>(null)
@@ -89,6 +91,12 @@ export const AsteroidGame = () => {
 			vx: 0,
 			vy: 0,
 		}
+		// Sincroniza a nave 3D já na largada
+		shipState.x = ship.x
+		shipState.y = ship.y
+		shipState.angle = ship.angle
+		shipState.thrusting = false
+
 		const bullets: Bullet[] = []
 		const particles: Particle[] = []
 		const keys = new Set<string>()
@@ -163,8 +171,8 @@ export const AsteroidGame = () => {
 			if (keys.has(' ') && time - lastShot > SHOOT_COOLDOWN_MS) {
 				lastShot = time
 				bullets.push({
-					x: ship.x + Math.cos(ship.angle) * SHIP_SIZE,
-					y: ship.y + Math.sin(ship.angle) * SHIP_SIZE,
+					x: ship.x + Math.cos(ship.angle) * SHIP_SIZE * 2.2,
+					y: ship.y + Math.sin(ship.angle) * SHIP_SIZE * 2.2,
 					vx: Math.cos(ship.angle) * BULLET_SPEED + ship.vx * 0.5,
 					vy: Math.sin(ship.angle) * BULLET_SPEED + ship.vy * 0.5,
 					life: 0,
@@ -176,6 +184,12 @@ export const AsteroidGame = () => {
 			ship.vy *= FRICTION
 			ship.x = (ship.x + ship.vx + width) % width
 			ship.y = (ship.y + ship.vy + height) % height
+
+			// A nave visível é a 3D do SpaceBackground: publica o estado para ela
+			shipState.x = ship.x
+			shipState.y = ship.y
+			shipState.angle = ship.angle
+			shipState.thrusting = thrusting
 
 			// Balas + colisão com os elementos da página
 			for (let i = bullets.length - 1; i >= 0; i--) {
@@ -208,24 +222,17 @@ export const AsteroidGame = () => {
 			ctx.fillStyle = color
 			ctx.lineWidth = 1.5
 
-			// Nave (triângulo vetorial)
-			ctx.save()
-			ctx.translate(ship.x, ship.y)
-			ctx.rotate(ship.angle)
-			ctx.beginPath()
-			ctx.moveTo(SHIP_SIZE, 0)
-			ctx.lineTo(-SHIP_SIZE * 0.7, SHIP_SIZE * 0.6)
-			ctx.lineTo(-SHIP_SIZE * 0.4, 0)
-			ctx.lineTo(-SHIP_SIZE * 0.7, -SHIP_SIZE * 0.6)
-			ctx.closePath()
-			ctx.stroke()
-			if (thrusting && Math.random() > 0.3) {
-				ctx.beginPath()
-				ctx.moveTo(-SHIP_SIZE * 0.55, 0)
-				ctx.lineTo(-SHIP_SIZE * (1 + Math.random() * 0.6), 0)
-				ctx.stroke()
+			// Rastro do propulsor (a nave em si é a 3D do fundo)
+			if (thrusting && Math.random() > 0.35) {
+				particles.push({
+					x: ship.x - Math.cos(ship.angle) * SHIP_SIZE * 1.4,
+					y: ship.y - Math.sin(ship.angle) * SHIP_SIZE * 1.4,
+					vx: -Math.cos(ship.angle) * 2 + (Math.random() - 0.5),
+					vy: -Math.sin(ship.angle) * 2 + (Math.random() - 0.5),
+					life: 0,
+					max: 14 + Math.random() * 10,
+				})
 			}
-			ctx.restore()
 
 			// Balas
 			for (const bullet of bullets) {
@@ -278,7 +285,7 @@ export const AsteroidGame = () => {
 			)}
 
 			{active && (
-				<div ref={overlayRef} className='fixed inset-0 z-[70]'>
+				<div ref={overlayRef} className='fixed inset-0 z-[80]'>
 					<canvas ref={canvasRef} className='h-full w-full' />
 					<div className='absolute top-20 left-1/2 -translate-x-1/2 flex items-center gap-6 text-xs uppercase tracking-[0.3em] text-neutral-700 dark:text-neutral-200'>
 						<span>
