@@ -15,7 +15,7 @@ export const Card = ({ project }: Props) => {
 	const { title, thumb, url } = project
 
 	return (
-		<div className='flex items-center grayscale hover:grayscale-0 transition-all will-change-auto p-5 relative group cursor-pointer w-full h-full overflow-hidden shadow-md bg-neutral-200 dark:bg-transparent rounded-2xl'>
+		<div className='flex items-center transition-all will-change-auto p-5 relative group cursor-pointer w-full h-full overflow-hidden shadow-md bg-neutral-200 dark:bg-transparent rounded-2xl'>
 			<div className='w-full aspect-[21/10] flex items-center justify-center'>
 				<img
 					loading='lazy'
