@@ -124,17 +124,24 @@ const Nebulas = ({ isDark, texture }: { isDark: boolean; texture: THREE.Texture 
 }
 
 type ShapeConfig = {
+	/** x fixo, deslocamento y em torno da âncora, profundidade z */
 	position: [number, number, number]
 	rotationSpeed: [number, number]
 	floatPhase: number
-	scrollFactor: number
+	/** Fração do scroll total da página (0 = topo, 1 = fim) onde a forma fica centralizada */
+	anchor: number
+	/** Quantos "mundos" a forma percorre por viewport rolado */
+	travel: number
 }
 
 const SHAPES: ShapeConfig[] = [
-	{ position: [-520, 180, 150], rotationSpeed: [0.1, 0.16], floatPhase: 0, scrollFactor: 0.22 },
-	{ position: [560, -120, -50], rotationSpeed: [0.14, 0.08], floatPhase: 2.1, scrollFactor: 0.34 },
-	{ position: [420, 280, -450], rotationSpeed: [0.06, 0.12], floatPhase: 4.2, scrollFactor: 0.15 },
-	{ position: [-480, -300, -300], rotationSpeed: [0.12, 0.05], floatPhase: 5.6, scrollFactor: 0.28 },
+	// Hero: só uma forma pequena e distante
+	{ position: [480, 60, -600], rotationSpeed: [0.06, 0.1], floatPhase: 0, anchor: 0.04, travel: 500 },
+	{ position: [-540, 0, 100], rotationSpeed: [0.1, 0.16], floatPhase: 1.4, anchor: 0.2, travel: 750 },
+	{ position: [560, -40, -150], rotationSpeed: [0.14, 0.08], floatPhase: 2.6, anchor: 0.36, travel: 800 },
+	{ position: [-460, 40, -350], rotationSpeed: [0.06, 0.12], floatPhase: 4.2, anchor: 0.52, travel: 650 },
+	{ position: [520, 0, 0], rotationSpeed: [0.12, 0.05], floatPhase: 5.6, anchor: 0.7, travel: 850 },
+	{ position: [-500, -60, -250], rotationSpeed: [0.09, 0.14], floatPhase: 7.1, anchor: 0.88, travel: 700 },
 ]
 
 const FloatingShape = ({
@@ -145,30 +152,42 @@ const FloatingShape = ({
 	children,
 }: SceneProps & { config: ShapeConfig; children: React.ReactNode }) => {
 	const meshRef = useRef<THREE.Mesh>(null)
+	const materialRef = useRef<THREE.MeshBasicMaterial>(null)
+	const maxOpacity = isDark ? 0.22 : 0.3
 
 	useFrame(({ clock }, delta) => {
 		const mesh = meshRef.current
 		if (!mesh) return
 		const t = clock.elapsedTime
 
+		// Posição relativa à âncora: -1 = um viewport antes, 0 = centrada, +1 = um depois
+		const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
+		const rel = (scroll.current - config.anchor * maxScroll) / window.innerHeight
+
+		// Longe da âncora a forma fica invisível e nem precisa animar
+		const fade = 1 - Math.min(1, Math.abs(rel) / 1.2)
+		if (materialRef.current) materialRef.current.opacity = maxOpacity * fade * fade
+		mesh.visible = fade > 0
+		if (!mesh.visible) return
+
 		// Rotação própria contínua + inclinação suave em direção ao ponteiro
 		mesh.rotation.x += delta * config.rotationSpeed[0] + (pointer.current.y * 0.3 - mesh.rotation.x) * delta * 0.15
 		mesh.rotation.y += delta * config.rotationSpeed[1] + (pointer.current.x * 0.3 - mesh.rotation.y) * delta * 0.15
 
-		// Flutuação ambiente + deslocamento vertical conforme o scroll
+		// Surge por baixo, cruza o viewport e sai por cima conforme o scroll
 		mesh.position.x = config.position[0] + Math.sin(t * 0.3 + config.floatPhase) * 25
-		mesh.position.y =
-			config.position[1] + Math.cos(t * 0.25 + config.floatPhase) * 20 + scroll.current * config.scrollFactor
+		mesh.position.y = config.position[1] + Math.cos(t * 0.25 + config.floatPhase) * 20 + rel * config.travel
 	})
 
 	return (
 		<mesh ref={meshRef} position={config.position}>
 			{children}
 			<meshBasicMaterial
+				ref={materialRef}
 				wireframe
 				color={isDark ? '#ffffff' : '#1a1a1a'}
 				transparent
-				opacity={isDark ? 0.22 : 0.3}
+				opacity={0}
 				depthWrite={false}
 			/>
 		</mesh>
@@ -180,16 +199,22 @@ const FloatingShapes = (props: SceneProps) => {
 	return (
 		<>
 			<FloatingShape {...props} config={SHAPES[0]}>
-				<icosahedronGeometry args={[95, 0]} />
+				<tetrahedronGeometry args={[70, 0]} />
 			</FloatingShape>
 			<FloatingShape {...props} config={SHAPES[1]}>
-				<torusKnotGeometry args={[60, 18, 64, 8]} />
+				<icosahedronGeometry args={[95, 0]} />
 			</FloatingShape>
 			<FloatingShape {...props} config={SHAPES[2]}>
-				<octahedronGeometry args={[80, 0]} />
+				<torusKnotGeometry args={[60, 18, 64, 8]} />
 			</FloatingShape>
 			<FloatingShape {...props} config={SHAPES[3]}>
+				<octahedronGeometry args={[80, 0]} />
+			</FloatingShape>
+			<FloatingShape {...props} config={SHAPES[4]}>
 				<dodecahedronGeometry args={[70, 0]} />
+			</FloatingShape>
+			<FloatingShape {...props} config={SHAPES[5]}>
+				<torusGeometry args={[75, 22, 12, 24]} />
 			</FloatingShape>
 		</>
 	)

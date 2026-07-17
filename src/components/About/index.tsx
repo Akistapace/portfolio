@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { AsciiPortrait } from './AsciiPortrait'
 
 
 const textVariants = {
@@ -34,19 +33,15 @@ export const About = () => {
 	return (
 		<div className='container flex flex-col md:flex-row gap-10 px-4'>
 			<div className='container flex px-4 justify-center items-center'>
-				<motion.div
-					className='group relative h-[300px] md:h-[550px] aspect-square overflow-hidden rounded-2xl'
+				<motion.img
+					src='/portfolio/images/eu-gray.png'
+					alt='Fernando Aquistapace'
+					className='rounded-2xl h-[300px] md:h-[550px] aspect-square object-cover'
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
 					viewport={{ amount: 0.8 }}
-				>
-					<img src='/portfolio/images/eu-gray.png' alt='Fernando Aquistapace' className='h-full w-full object-cover' />
-					<AsciiPortrait
-						src='/portfolio/images/eu.JPG'
-						className='pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-500 group-hover:opacity-100'
-					/>
-				</motion.div>
+				/>
 
 			</div>
 			<div className='flex flex-col justify-center items-start gap-5 w-full text-md'>
