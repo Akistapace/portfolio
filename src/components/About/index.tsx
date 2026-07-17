@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { AsciiPortrait } from './AsciiPortrait'
 
 
 const textVariants = {
@@ -21,7 +21,6 @@ const letterVariants = {
 
 export const About = () => {
 	const { t } = useTranslation()
-	const [hovered, setHovered] = useState(false)
 
 	const splitText = (text: string) => {
 		return text.split('').map((char, index) => (
@@ -34,20 +33,21 @@ export const About = () => {
 
 	return (
 		<div className='container flex flex-col md:flex-row gap-10 px-4'>
-			<div
-				className='container flex px-4 justify-center items-center transition-all'
-				onMouseEnter={() => setHovered(true)}
-				onMouseLeave={() => setHovered(false)}
-			>
-				<motion.img
-					src={hovered ? '/portfolio/images/eu.JPG' : '/portfolio/images/eu-gray.JPG'}
-					alt='Fernando Aquistapace'
-					className='rounded-2xl h-[300px] md:h-[450px] aspect-square object-cover'
+			<div className='container flex px-4 justify-center items-center'>
+				<motion.div
+					className='group relative h-[300px] md:h-[550px] aspect-square overflow-hidden rounded-2xl'
 					initial={{ opacity: 0, y: 20 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 1 }}
 					viewport={{ amount: 0.8 }}
-				/>
+				>
+					<img src='/portfolio/images/eu-gray.png' alt='Fernando Aquistapace' className='h-full w-full object-cover' />
+					<AsciiPortrait
+						src='/portfolio/images/eu.JPG'
+						className='pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-500 group-hover:opacity-100'
+					/>
+				</motion.div>
+
 			</div>
 			<div className='flex flex-col justify-center items-start gap-5 w-full text-md'>
 				<div className='container text-black dark:text-white flex flex-col-reverse md:flex-col gap-5 text-center w-full max-w-2xl'>
