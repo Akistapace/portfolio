@@ -6,6 +6,13 @@
 		"projects": "Projetos",
 		"contact": "Contato"
 	},
+	"hero": {
+		"eyebrow": "Frontend · Web Performance",
+		"tagline": "Construo interfaces rápidas e experiências digitais que performam em escala.",
+		"viewProjects": "Ver projetos",
+		"contact": "Fale comigo",
+		"scroll": "Explorar"
+	},
 	"resume": {
 		"download": "Baixar Currículo",
 		"generating": "Gerando PDF...",
