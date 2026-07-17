@@ -35,9 +35,15 @@ const StarField: React.FC = () => {
 			p5InstanceRef.current.remove()
 			p5InstanceRef.current = null
 		}
+		// p5 v2 cria o canvas de forma assíncrona; remove() antes disso deixa canvas órfão no DOM
+		canvasRef.current.innerHTML = ''
 
 		const numStars = isMobile ? 50 : 100
 		const frameRate = isMobile ? 30 : 60
+
+		// p5 v2 inicializa de forma assíncrona: se o efeito for limpo antes do setup
+		// rodar (StrictMode/troca de tema), a instância descartada se auto-remove
+		let cancelled = false
 
 		const sketch = (p: p5) => {
 			const stars: Star[] = []
@@ -45,6 +51,10 @@ const StarField: React.FC = () => {
 			let initialized = false
 
 			p.setup = () => {
+				if (cancelled) {
+					p.remove()
+					return
+				}
 				p.createCanvas(p.windowWidth, p.windowHeight)
 				p.frameRate(frameRate)
 				p.stroke(0)
@@ -143,9 +153,12 @@ const StarField: React.FC = () => {
 
 		p5InstanceRef.current = new p5(sketch, canvasRef.current as HTMLElement)
 
+		const container = canvasRef.current
 		return () => {
+			cancelled = true
 			p5InstanceRef.current?.remove()
 			p5InstanceRef.current = null
+			if (container) container.innerHTML = ''
 		}
 	}, [isDark])
 
