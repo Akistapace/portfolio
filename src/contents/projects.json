@@ -1,5 +1,23 @@
 [
 	{
+		"id": 12,
+		"title": "Raquel Portfólio",
+		"description": {
+			"en": "Portfolio website for Raquel, showcasing her work and skills.",
+			"pt-BR": "Site de portfólio de Raquel, apresentando seu trabalho e habilidades.",
+			"es": "Sitio web de portafolio de Raquel, mostrando su trabajo y habilidades."
+		},
+		"url": "https://akistapace.github.io/raquel-portfolio/",
+		"thumb": "raquel-portfolio.png",
+		"video": "",
+		"stacks": [
+			"reactjs",
+			"typescript",
+			"shadcn",
+			"tailwindcss"
+		]
+	},
+	{
 		"id": 11,
 		"title": "LoveReplay",
 		"description": {
