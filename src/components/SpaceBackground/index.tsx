@@ -124,18 +124,79 @@ const Nebulas = ({ isDark, texture }: { isDark: boolean; texture: THREE.Texture 
 	)
 }
 
-const Spaceship = ({ isDark, pointer, scroll }: SceneProps) => {
+type ShipPartProps = {
+	geometry: THREE.BufferGeometry
+	hull: string
+	line: string
+	position?: [number, number, number]
+	rotation?: [number, number, number]
+	scale?: [number, number, number]
+}
+
+/** Peça do casco: malha sólida + arestas destacadas (estilo blueprint) */
+const ShipPart = ({ geometry, hull, line, ...props }: ShipPartProps) => {
+	const edges = useMemo(() => new THREE.EdgesGeometry(geometry, 12), [geometry])
+	useEffect(() => () => edges.dispose(), [edges])
+
+	return (
+		<group {...props}>
+			<mesh geometry={geometry}>
+				<meshBasicMaterial color={hull} polygonOffset polygonOffsetFactor={2} polygonOffsetUnits={2} />
+			</mesh>
+			<lineSegments geometry={edges}>
+				<lineBasicMaterial color={line} transparent opacity={0.9} />
+			</lineSegments>
+		</group>
+	)
+}
+
+const Spaceship = ({ isDark, pointer, scroll, texture }: SceneProps & { texture: THREE.Texture }) => {
 	const groupRef = useRef<THREE.Group>(null)
 	const prev = useRef({ x: 0, y: 0, heading: Math.PI / 2 })
+	const glowLeftRef = useRef<THREE.SpriteMaterial>(null)
+	const glowRightRef = useRef<THREE.SpriteMaterial>(null)
+
+	// Caça espacial procedural (aponta +y; a página é vista de cima)
+	const geometries = useMemo(() => {
+		const fuselage = new THREE.CylinderGeometry(5.5, 13, 62, 8)
+		const nose = new THREE.ConeGeometry(5.5, 22, 8)
+		const cockpit = new THREE.SphereGeometry(7.5, 8, 6)
+
+		// Asa delta enflechada (raiz na fuselagem, ponta para trás)
+		const wingShape = new THREE.Shape()
+		wingShape.moveTo(0, 22)
+		wingShape.lineTo(42, -14)
+		wingShape.lineTo(40, -24)
+		wingShape.lineTo(0, -8)
+		wingShape.closePath()
+		const wing = new THREE.ExtrudeGeometry(wingShape, { depth: 2.4, bevelEnabled: false })
+
+		const engine = new THREE.CylinderGeometry(4.5, 5.5, 18, 8)
+		return { fuselage, nose, cockpit, wing, engine }
+	}, [])
+
+	useEffect(
+		() => () => {
+			for (const geometry of Object.values(geometries)) geometry.dispose()
+		},
+		[geometries]
+	)
 
 	useFrame(({ clock }, delta) => {
 		const group = groupRef.current
 		if (!group) return
 		const t = clock.elapsedTime
+		const gameActive = useGameStore.getState().active
+
+		// Brilho dos motores: forte acelerando no jogo, pulso leve em cruzeiro
+		const glowTarget = gameActive && shipState.thrusting ? 0.9 : 0.18 + Math.sin(t * 2.3) * 0.06
+		for (const material of [glowLeftRef.current, glowRightRef.current]) {
+			if (material) material.opacity += (glowTarget - material.opacity) * Math.min(1, delta * 8)
+		}
 
 		// Modo jogo: a nave 3D vira o player, seguindo a física do AsteroidGame.
 		// Converte a posição em pixels para o plano z=0 do mundo.
-		if (useGameStore.getState().active) {
+		if (gameActive) {
 			const aspect = window.innerWidth / window.innerHeight
 			const halfHeight = Math.tan((60 * Math.PI) / 360) * CAMERA_Z
 			const worldX = (shipState.x / window.innerWidth - 0.5) * 2 * halfHeight * aspect
@@ -177,7 +238,7 @@ const Spaceship = ({ isDark, pointer, scroll }: SceneProps) => {
 		group.position.y += (targetY - group.position.y) * ease
 		group.position.z = -180
 
-		// Aponta o nariz para a direção do movimento (cone aponta +y)
+		// Aponta o nariz para a direção do movimento (nave aponta +y)
 		const vx = group.position.x - prev.current.x
 		const vy = group.position.y - prev.current.y
 		if (Math.abs(vx) + Math.abs(vy) > 0.05) {
@@ -189,36 +250,67 @@ const Spaceship = ({ isDark, pointer, scroll }: SceneProps) => {
 		}
 		group.rotation.z = prev.current.heading - Math.PI / 2
 		// Leve rolagem no eixo longitudinal para dar vida
-		group.rotation.y = Math.sin(t * 0.7) * 0.25
+		group.rotation.y = Math.sin(t * 0.7) * 0.3
 		prev.current.x = group.position.x
 		prev.current.y = group.position.y
 	})
 
-	const color = isDark ? '#ffffff' : '#1a1a1a'
-	const opacity = isDark ? 0.5 : 0.55
-	const scale = isMobile ? 0.6 : 1
+	const hull = isDark ? '#0d0d10' : '#efefec'
+	const line = isDark ? '#ffffff' : '#161616'
+	const glowColor = isDark ? '#ffffff' : '#1a1a1a'
+	const scale = isMobile ? 0.55 : 0.9
 
 	return (
 		<group ref={groupRef} scale={scale}>
-			{/* Fuselagem */}
-			<mesh>
-				<coneGeometry args={[22, 78, 6]} />
-				<meshBasicMaterial wireframe color={color} transparent opacity={opacity} depthWrite={false} />
-			</mesh>
-			{/* Asas */}
-			<mesh position={[-30, -26, 0]} rotation={[0, 0, 0.5]}>
-				<boxGeometry args={[42, 4, 14]} />
-				<meshBasicMaterial wireframe color={color} transparent opacity={opacity * 0.8} depthWrite={false} />
-			</mesh>
-			<mesh position={[30, -26, 0]} rotation={[0, 0, -0.5]}>
-				<boxGeometry args={[42, 4, 14]} />
-				<meshBasicMaterial wireframe color={color} transparent opacity={opacity * 0.8} depthWrite={false} />
-			</mesh>
-			{/* Motor */}
-			<mesh position={[0, -44, 0]} rotation={[Math.PI / 2, 0, 0]}>
-				<torusGeometry args={[12, 4, 4, 8]} />
-				<meshBasicMaterial wireframe color={color} transparent opacity={opacity * 0.9} depthWrite={false} />
-			</mesh>
+			{/* Fuselagem e nariz */}
+			<ShipPart geometry={geometries.fuselage} hull={hull} line={line} />
+			<ShipPart geometry={geometries.nose} hull={hull} line={line} position={[0, 42, 0]} />
+			{/* Cockpit */}
+			<ShipPart
+				geometry={geometries.cockpit}
+				hull={hull}
+				line={line}
+				position={[0, 12, 6]}
+				scale={[1, 1.6, 0.7]}
+			/>
+			{/* Asas delta */}
+			<ShipPart geometry={geometries.wing} hull={hull} line={line} position={[4, -8, -1.2]} />
+			<ShipPart geometry={geometries.wing} hull={hull} line={line} position={[-4, -8, -1.2]} scale={[-1, 1, 1]} />
+			{/* Canards dianteiros */}
+			<ShipPart geometry={geometries.wing} hull={hull} line={line} position={[4, 20, -1]} scale={[0.4, 0.4, 0.6]} />
+			<ShipPart
+				geometry={geometries.wing}
+				hull={hull}
+				line={line}
+				position={[-4, 20, -1]}
+				scale={[-0.4, 0.4, 0.6]}
+			/>
+			{/* Naceles dos motores */}
+			<ShipPart geometry={geometries.engine} hull={hull} line={line} position={[16, -28, 0]} />
+			<ShipPart geometry={geometries.engine} hull={hull} line={line} position={[-16, -28, 0]} />
+			{/* Escape dos motores */}
+			<sprite position={[16, -44, 0]} scale={[30, 30, 1]}>
+				<spriteMaterial
+					ref={glowLeftRef}
+					map={texture}
+					color={glowColor}
+					transparent
+					opacity={0.18}
+					depthWrite={false}
+					blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
+				/>
+			</sprite>
+			<sprite position={[-16, -44, 0]} scale={[30, 30, 1]}>
+				<spriteMaterial
+					ref={glowRightRef}
+					map={texture}
+					color={glowColor}
+					transparent
+					opacity={0.18}
+					depthWrite={false}
+					blending={isDark ? THREE.AdditiveBlending : THREE.NormalBlending}
+				/>
+			</sprite>
 		</group>
 	)
 }
@@ -258,7 +350,7 @@ const Scene = ({ isDark, pointer, scroll }: SceneProps) => {
 				/>
 			))}
 			<Nebulas isDark={isDark} texture={texture} />
-			<Spaceship isDark={isDark} pointer={pointer} scroll={scroll} />
+			<Spaceship isDark={isDark} pointer={pointer} scroll={scroll} texture={texture} />
 			<CameraRig pointer={pointer} scroll={scroll} />
 		</>
 	)
