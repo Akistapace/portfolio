@@ -35,14 +35,23 @@
 			"education": "Análise e Desenvolvimento de Sistemas | (2018-2021)",
 			"otherSkills": "Entre outros",
 			"languages": [
-				{ "label": "Português", "level": "Nativo" },
-				{ "label": "Inglês", "level": "Intermediário" },
-				{ "label": "Espanhol", "level": "Intermediário" }
+				{
+					"label": "Português",
+					"level": "Nativo"
+				},
+				{
+					"label": "Inglês",
+					"level": "Intermediário"
+				},
+				{
+					"label": "Espanhol",
+					"level": "Intermediário"
+				}
 			],
 			"experiences": [
 				{
 					"role": "Senior Frontend / Fullstack Developer, Ilegra",
-					"period": "Atualmente",
+					"period": "2026",
 					"subtitle": "Projeto Internacional - Elite Business (SaaS de Business Exchange)",
 					"text": "Atuação em projeto internacional como Senior Frontend / Fullstack Developer, desenvolvendo e evoluindo uma plataforma SaaS de Business Exchange. Atuando na implementação de funcionalidades end-to-end, incluindo backend (Node.js), frontend (React/Next.js) e integrações com APIs, além de novas soluções para o produto, contribuindo para a escalabilidade, usabilidade e evolução contínua da plataforma."
 				},
