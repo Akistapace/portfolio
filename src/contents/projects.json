@@ -1,5 +1,22 @@
 [
 	{
+		"id": 13,
+		"title": "FaceMesh Mouse",
+		"description": {
+			"en": "Accessibility app that controls the mouse with head movements tracked via webcam, turning facial expressions like blinking or raising an eyebrow into clicks. Built for people with motor limitations affecting their hands or arms, it runs in the background with a system tray icon and includes a floating shortcut to the virtual keyboard and voice typing.",
+			"pt-BR": "Aplicativo de acessibilidade que controla o mouse com movimentos da cabeça captados pela webcam, transformando expressões faciais como piscar ou levantar a sobrancelha em cliques. Criado para pessoas com limitações motoras nas mãos ou braços, roda em segundo plano com ícone na bandeja do sistema e inclui atalho flutuante para teclado virtual e digitação por voz.",
+			"es": "Aplicación de accesibilidad que controla el mouse con movimientos de la cabeza captados por la webcam, convirtiendo expresiones faciales como parpadear o levantar una ceja en clics. Creada para personas con limitaciones motoras en manos o brazos, se ejecuta en segundo plano con ícono en la bandeja del sistema e incluye un acceso flotante al teclado virtual y dictado por voz."
+		},
+		"url": "https://github.com/Akistapace/facemesh-mouse",
+		"thumb": "facemesh-mouse.gif",
+		"video": "",
+		"stacks": [
+			"electron",
+			"typescript",
+			"nodejs"
+		]
+	},
+	{
 		"id": 12,
 		"title": "Raquel Portfólio",
 		"description": {
