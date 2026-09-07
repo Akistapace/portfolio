@@ -7,7 +7,7 @@
 			"pt-BR": "Aplicativo de acessibilidade que controla o mouse com movimentos da cabeça captados pela webcam, transformando expressões faciais como piscar ou levantar a sobrancelha em cliques. Criado para pessoas com limitações motoras nas mãos ou braços, roda em segundo plano com ícone na bandeja do sistema e inclui atalho flutuante para teclado virtual e digitação por voz.",
 			"es": "Aplicación de accesibilidad que controla el mouse con movimientos de la cabeza captados por la webcam, convirtiendo expresiones faciales como parpadear o levantar una ceja en clics. Creada para personas con limitaciones motoras en manos o brazos, se ejecuta en segundo plano con ícono en la bandeja del sistema e incluye un acceso flotante al teclado virtual y dictado por voz."
 		},
-		"url": "https://github.com/Akistapace/facemesh-mouse",
+		"url": "https://github.com/Akistapace/acessibility-mouse-tracking",
 		"thumb": "facemesh-mouse.gif",
 		"video": "",
 		"stacks": [
